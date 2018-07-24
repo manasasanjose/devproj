@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+html, body { height: 80%; }
+body
+{
+background-color:#267DA8;;
+ }
+#h1{
+color: #ffffff;
+text-align:center;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+	padding-top:10px;
+	padding-bottom:5px;
+	padding-left:5px;
+}
+
+li {
+    float: left;
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 100px;
+	text-decoration: none;
+	background-color:#3399ff;
+	margin-bottom:5px;
+	
+	//border-radius:50px;
+}
+.button1 :after {
+    content:"";
+    position: absolute;
+    left: 100%;
+    top:0px;
+    width:0px;
+    height:0px;
+    border-top:20px solid transparent;
+    border-left:40px solid blue;
+    border-bottom:20px solid transparent;
+}
+a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+background-color:#c33c3c;
+font-weight:bold;
+
+}
+#div1
+{
+	background-color:#ffffff;
+	 border: 1px;
+	 width:70%;
+	 margin-left:160px;
+	
+   
+}
+.submit{
+	
+	margin-top: 200px;
+	float:left;
+	margin-right:25px;
+	padding-top: 15px;
+	padding-bottom:15px;
+	padding-left:75px;
+	padding-right:75px;
+	background-color:#000000;
+	border: 1px solid;
+	color:#ffffff;
+	
+}
+.reset
+{
+		
+	margin-top: 200px;
+	//float:left;
+	margin-left:80px;
+	padding-top: 15px;
+	padding-bottom:15px;
+	padding-left:60px;
+	padding-right:60px;
+	background-color:#000000;
+	border: 1px solid;
+	color:#ffffff;
+	
+	
+
+}
+#section3{
+background-color:#0066cc;
+}
+#section1
+{
+width:65%;
+margin-left: 180px;
+background-color:#d9d9d9;
+height:100%;
+
+
+}
+#section2
+{
+	width:100%;
+	height:100%;
+	background-color:#d9d9d9;
+}
+.label1
+{
+color:  #267DA8;
+text-align:left;
+font-weight:bold;
+//margin-left: 7px;
+
+}
+//.divide { width: 50%; height: 50%; float: left; }
+/*#div_3 { width: 25%; height: 30%; float: left; background: #d9d9d9; }
+#div_1 { width: 25%; height:30%; float: left; background: #d9d9d9; }*/
+/*#div_2 { width: 50%; height: 50%; float: left; background: #AAA; }
+#div_3 { width: 50%; height: 50%; float: left; background: #777; }
+#div_4 {  width: 50%; height: 50%; float: left; background: #444; }*/
+#div_1{ width: 20%; height:100%; float: left; background-color: #d9d9d9;margin-left:5px; }
+#div_line{width: 1px; height:100%; float: left; background-color: #cccccc; margin-right:25px;margin-left:25px;}
+
+</style>
+<script>
+function submit_val()
+{
+var val;
+var radio=document.getElementsByName('crust');
+	for(var i=0;i<radio.length;i++)
+	{
+		if(radio[i].checked)
+		{
+			val=document.getElementById(radio[i]).value;
+			break;
+		}
+	}
+	if(i>=radio.length)
+	{
+		alert("please make a selection");
+		return false;
+		
+	}
+	else
+	{
+		document.getElementById('hidden1').value=val;
+	}
+}
+	</script>
+<body>
+<h1 id="h1"> Build Your Own Pizza </h1>
+<div id="div1">
+<ul>
+  <li class="spot"><a class="active" href="sizeandcrust.html">SIZE & CRUST</a></li>
+  <li><a href="#">CHEESE & SAUCE  </a></li>
+  <li><a href="#">TOPPINGS </a></li>
+</ul>
+</div>
+
+<section id="section1">
+<form action="cheese.html" method="get">
+<section id="section2">
+
+<label class="label1"><h1> CHOOSE SIZE & CRUST </h1></label>
+<div id="div_1" >
+<p class="label1">HAND TOSSED </p>
+<p> Garlic Seasoned Crust with a rich,butter taste </p>
+<input type="radio" name="crust" id="small" value="handtossed_small">Small(10")</input><br>
+<input type="radio" name="crust" id="medium" value="handtossed_medium">Medium(12")</input><br>
+<input type="radio" name="crust" id="large" value="handtossed_large">Large(14")</input><br>
+<input type="radio" name="crust" id="x-large" value="handtossed_extralarge">X-Large(16")</input><br>
+<br><br>
+<p class="label1">GLUTEN FREE CRUST </p>
+<p>Domino's pizza made with gluten free crust </p>
+<input type="radio" name="crust" id="small_4" value="gluten_small">Small(10")</input>
+
+</div>
+<div id="div_line">
+<svg height="210" width="500">
+  <line x1="0" y1="0" x2="0" y2="200" style="stroke:#b3b3b3;stroke-width:2" />
+  Sorry, your browser does not support inline SVG.
+</svg>
+</div>
+<div id="div_1" >
+<p class="label1">HANDMADE PAN </p>
+<p> Two Layers of Cheese topping to the edge ,and a crust that bakes up golden and crispy with a buttery taste </p>
+<input type="radio" name="crust" id="medium_1" value="handmade_medium">Medium(12")</input>
+
+</div>
+
+<div id="div_line">
+<svg height="210" width="500">
+  <line x1="0" y1="0" x2="0" y2="200" style="stroke:#b3b3b3;stroke-width:2" />
+  Sorry, your browser does not support inline SVG.
+</svg>
+</div>
+
+
+<div id="div_1" >
+<p class="label1">CRUCNHY THIN CRUST </p>
+<p> Thin enough for the  optimum crispy to crunchy ratio </p>
+<input type="radio" name="crust" id="medium_2"value="crunchy_medium">Medium(12")</input><br>
+<input type="radio" name="crust" id="large_2"value="crunchy_large">Large(14")</input>
+
+</div>
+
+<div id="div_line">
+<svg height="210" width="500">
+  <line x1="0" y1="0" x2="0" y2="200" style="stroke:#b3b3b3;stroke-width:2" />
+  Sorry, your browser does not support inline SVG.
+</svg>
+</div>
+
+<div id="div_1" >
+<p class="label1">BROOKLYN STYLE </p>
+<p>Hand stretched to be big, thin and perfectly foldable</p>
+<input type="radio" name="crust" id="large_3" value="brooklyn_large">Large(14")</input><br>
+<input type="radio" name="crust" id="x-large_3" value="brooklyn_extralarge">X-Large(16")</input>
+</div>
+</section>
+<br>
+<input type="hidden" id="hidden1" />
+<input class="submit" type="submit" value="Build" onclick="return submit_val();"/> 
+
+<input  class="reset" type="reset" value="Cancel"/>
+
+</form>	
+</section>
+</body>
+</html>

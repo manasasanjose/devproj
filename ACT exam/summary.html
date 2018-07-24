@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body {
+    width:70%;
+    border: 1px solid;
+	border-radius:5px;
+   	margin-left: 10%;
+	margin-top: 10%;
+	height:80%;
+}
+
+
+#header1{
+
+	text-align:center;
+	font-weight:bold;
+	background-color:#e6e6e6;
+	padding-bottom:2px;
+	padding-top:2px;
+	
+
+}
+
+
+.section1 {
+  
+  width: 96%; 
+  border: 2px solid;
+ margin-left:10px;
+ margin-bottom:10px;
+ padding-left:10px;
+ margin-right:10px;
+ 
+ 
+ 
+}
+.submit{
+	border-radius: 10px;
+	padding-top: 7px;
+	padding-bottom:7px;
+	background-color:#ffffff;
+	border: 1px solid;
+	margin-bottom:10px;
+	margin-left:43%;
+	width: 15%;
+	padding-left:0;
+	
+	
+}
+
+
+</style>
+<script type="text/javascript">
+function validate()
+{
+	
+	var string= window.location.search.substring(1);
+    var arrays = string.split('&');
+	var assocarray=new Array();
+	for(var i=0;i<arrays.length;i++)
+	{	
+        var value = arrays[i].split('=');
+		assocarray[value[0]]=value[1];
+	}	
+	var value_1=assocarray['quant'];
+	var value_2=assocarray['quantanswered'];
+	var value_3=assocarray['quantcorrect'];
+	
+	document.getElementById('nqa').innerHTML="<strong>Number of Questions answered:</strong>"+value_2;
+	document.getElementById('nqc').innerHTML="<strong>Number of Correct Answers:</strong>"+value_3;
+	var val=parseInt(value_3)*50;
+	document.getElementById('scorequant').innerHTML="<strong>Score:</strong>"+val;
+	
+	value_1=assocarray['verbal'];
+	value_2=assocarray['verbalanswered'];
+	value_3=assocarray['verbalcorrect'];
+	
+	document.getElementById('nra').innerHTML="<strong>Number of Questions answered:</strong>"+value_2;
+	document.getElementById('nrc').innerHTML="<strong>Number of Correct Answers:</strong>"+value_3;
+	val=parseInt(value_3)*50;
+	document.getElementById('scoreverbal').innerHTML="<strong>Score:</strong>"+val;
+	
+	
+	value_1=assocarray['video'];
+	value_2=assocarray['videoanswered'];
+	value_3=assocarray['videocorrect'];
+	
+	document.getElementById('nva').innerHTML="<strong>Number of Questions answered:</strong>"+value_2;
+	document.getElementById('nvc').innerHTML="<strong>Number of Correct Answers:</strong>"+value_3;
+	val=parseInt(value_3)*50;
+	document.getElementById('scorevideo').innerHTML="<strong>Score:</strong>"+val;
+	
+	
+	
+	
+}
+window.onload=validate;
+</script>
+</head>
+<body>
+  <header id="header1" >Score Card</header>
+  <br>
+<section class="section1">
+<details>
+  <summary>Quantitative Section</summary>
+  <p id="nqa"></p>
+  <p id="nqc"></p>
+  <p id="scorequant"></p>
+</details>
+<details>
+  <summary>Reading section</summary>
+  <p id="nra"></p>
+  <p id="nrc"></p>
+  <p id="scoreverbal"></p>
+</details>
+<details>
+  <summary>Audio/video Section</summary>
+  <p id="nva"></p>
+  <p id="nvc"></p>
+  <p id="scorevideo"></p>
+</details>
+
+</section>
+<h3 align="center">Thank You !! </h3>
+<button class="submit" onclick="alert('Thank you,please close the window');"> Finish </button>
+
+
+</body>
+
+
+
+
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+#section1{
+	position:fixed;
+	border-radius:6px;
+	border: 2px solid #000000;
+    padding: 20px; 
+    width: 350px;
+    height: 180px;
+	align:center;
+	top:30%;
+	left:30%;
+	right:50%;
+	background-image: linear-gradient(top, red, red 70%, transparent 70%, transparent 100%);
+	
+}	
+#header1
+{
+position:relative;
+background: #e6e6e6;
+padding: 0px;
+text-align:center;
+height: 17%;
+width:390px;
+left: -5.5%;
+top : -23%;
+
+}
+#login
+{
+	border-radius: 25px;
+	margin-left: 50px;
+	background-color: #ffffff;
+	border-color: #000000;
+	width: 60px;
+
+}
+#username ,#password
+{
+	margin-left: 50px;
+	
+}
+</style>
+</head>
+<body>
+<section id="section1">
+<header id="header1"><h4  style="padding-top: 3px;"><b> User Login</b> </h4></header>
+<section>
+<form name="loginform" method="post" action="math_temp.html"> 
+         
+            <label style="padding-left: 20px;" for="username" ><b>Username:</b></label>
+            <input  id="username" name="username" required="required"/><br/><br/>
+            <label style="padding-left: 20px;" for="password"><b>Password:</b></label>
+            <input type="password" id="password" name="password" required="required" /> <br> <br> <br>     
+            <label style="color: #0040ff;padding-left:20px;"><b>Create Account/Forgot?</b></label>
+			<input type="submit" id="login" value="Login"/>
+        
+    </form>
+</section>	
+	</section>
+	</body>
+	
+	</html>

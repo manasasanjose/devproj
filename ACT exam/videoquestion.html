@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body {
+    width:60%;
+    border: 4px solid;
+   	margin-left: 10%;
+	margin-top: 10%;
+	
+}
+
+#mainsection{
+
+	padding-bottom: 3%;
+}
+.btn2
+{
+	
+	margin-left:100px;
+}
+.btn4
+{
+	
+	margin-left:110px;
+}
+
+#form1
+{
+		padding-top: 20px;
+		padding-left:20px;
+		padding-right:20px;
+		padding-bottom:20px;
+}
+
+#header1{
+
+	text-align:center;
+	font-weight:bold;
+	background-color:#e6e6e6;
+	padding-bottom:4px;
+	padding-top:2px;
+	
+
+}
+.section1{
+  width: 55%;
+  
+}
+.btn1
+{
+	margin-top:40px;
+	margin-left:10px;
+}
+#div2
+{
+	
+	padding-top: -90px;
+		padding-left:40px;
+		padding-right:20px;
+		padding-bottom:20px;
+	
+}
+.section2 {
+  width: 50%; 
+ 
+ 
+}
+.btn3
+{
+	margin-top: 40px;
+	margin-left:10px;
+}
+.submit{
+	border-radius: 10px;
+	padding-top: 7px;
+	padding-bottom:10px;
+	background-color:#ffffff;
+	border: 1px solid;
+	margin-bottom:10px;
+	
+	
+}
+#aside1
+{
+	margin-top:-320px;
+	margin-right:50px;
+}
+
+.para
+{
+	text-align:center;
+	padding-left:300px;
+	font-weight:bold;
+	padding-top:-6px;
+}
+
+</style>
+<script type="text/javascript">
+function validate()
+{
+	var radio=document.getElementsByName('source');
+	for(var i=0;i<radio.length;i++)
+	{
+		if(radio[i].checked)
+		{
+			break;
+		}
+	}
+	if(i>=radio.length)
+	{
+		document.getElementById('video').value=1;
+		document.getElementById('videoanswered').value=0;
+		document.getElementById('videocorrect').value=0;
+	}
+	else if(document.getElementById('nasa').checked)
+	{
+		document.getElementById('video').value=1;
+		document.getElementById('videoanswered').value=1;
+		document.getElementById('videocorrect').value=1;
+	}
+	else
+	{
+		document.getElementById('video').value=1;
+		document.getElementById('videoanswered').value=1;
+		document.getElementById('videocorrect').value=0;
+	}
+	var string= window.location.search.substring(1);
+    var arrays = string.split('&');
+	var assocarray=new Array();
+	for(var i=0;i<arrays.length;i++)
+	{	
+        var value = arrays[i].split('=');
+		assocarray[value[0]]=value[1];
+	}	
+	var value_1=assocarray['quant'];
+	var value_2=assocarray['quantanswered'];
+	var value_3=assocarray['quantcorrect'];
+	document.getElementById('quant').value=value_1;
+	document.getElementById('quantanswered').value=value_2;
+	document.getElementById('quantcorrect').value=value_3;
+	 value_1=assocarray['verbal'];
+	 value_2=assocarray['verbalanswered'];
+	 value_3=assocarray['verbalcorrect'];
+	document.getElementById('verbal').value=value_1;
+	document.getElementById('verbalanswered').value=value_2;
+	document.getElementById('verbalcorrect').value=value_3;
+	
+	
+}
+</script>
+</head>
+<body>
+  <header id="header1" >Question 4</header>
+  <section class="section1"><p style="padding-left: 20px;">Watch the video and answer the following question.<br>What is the source as mentioned in the video?</p></section>
+ <section>
+ <form id="form1" action="surveysco.html">
+ <input type="radio" name="source" class="btn1" value="correct" id="nasa" />
+        <label for="nasa">NASA.Gov</label>
+		<input type="radio"  class="btn2" name="source" value="wrong" id="data" />
+        <label for="data" >Data.Gov</label>
+		<br>
+		<input type="radio"  class="btn3" name="source" value="wrong" id="facebook" />
+        <label for="facebook">Facebook</label>
+		<input type="radio" class="btn4"  name="source" value="wrong" id="xyz" />
+        <label for="xyz">XYZ.net</label>
+		<br>
+		 <br>
+		 <br><br>
+<input type="hidden" name="quant" id="quant"/>
+<input type="hidden" name="quantanswered" id="quantanswered"/>
+<input type="hidden" name="quantcorrect" id="quantcorrect"/>
+<input type="hidden" name="verbal" id="verbal"/>
+<input type="hidden" name="verbalanswered" id="verbalanswered"/>
+<input type="hidden" name="verbalcorrect" id="verbalcorrect"/>
+<input type="hidden" name="video" id="video"/>
+<input type="hidden" name="videoanswered" id="videoanswered"/>
+<input type="hidden" name="videocorrect" id="videocorrect"/>
+
+		<input type="submit" class="submit" value="Submit & Next Question" onclick="validate();"/>
+<input type="reset" class="submit" style="margin-left:30px;" value="Cancel & Clear Selection"/>
+ </form>
+ <aside id="aside1" style="text-align:right;">
+         <video width="360" height="240" controls>
+          <source src="nasa.mp4" type="video/mp4">
+        </video> 
+        <p class="para">Expedition 40 Undocks Ending Mission<br> Source :https://nasa.gov</p>
+		
+       </aside>
+ </section>
+</body>
+
+
+
+
+
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style type="text/css">
+body {
+    width:70%;
+    border: 4px solid;
+    border-radius: 10px;
+    margin: 8% auto
+
+}
+#header1{
+
+	text-align:center;
+	font-weight:bold;
+	background-color:#4b0082;
+	color:#ffffff;
+	
+
+}
+#form1{
+padding-top:5%;
+padding-left:5%;
+padding-bottom:5%;
+
+
+}
+label{
+display:inline-block;
+width:200px;
+margin-right:30px;
+text-align:right;
+}
+.help
+{
+	
+	margin-left: 55%;
+	//background-color:#e6e6e6;
+	//visibility:hidden;
+	word-wrap:break-word;
+	width: 20%;
+	background:-webkit-linear-gradient(top, #8A2BE2, lavender);
+	border-color:white;
+	
+}
+/*body
+{
+	 background-color:#FFF0F5;
+	 background:-webkit-linear-gradient(top,#FFF0F5,#ffffff);
+}*/
+form
+{
+	background-color:lavender;
+	 background:-webkit-linear-gradient(top, lavender,#ffffff);
+}
+
+#fieldset{
+border:none;
+width:500px;
+
+}
+
+.section1
+{
+	
+}
+progress
+{
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+progress::-webkit-progress-bar
+{
+	background-color:#A9A9A9;
+	border: 1px solid #0063a;
+	border-radius:10px;
+	borderColor:#000000;
+	content:"strong";
+	
+}
+progress::-webkit-progress-value
+{
+	content:"strong";
+	background-color:#00cc00;
+	border-radius:10px;
+	
+}
+
+.button1 {
+  background:#191970;
+  background-image: -webkit-linear-gradient(top,#191970,#191970);
+   background-image: -moz-linear-gradient(top, #20B2AA, #20B2AA);
+  -webkit-border-radius: 20;
+  -moz-border-radius: 20;
+  border-radius: 20px;
+  padding: 5px 5px 5px 5px;
+   font-size:15px;
+  color:#ffffff;
+  
+}
+
+.button1:hover{
+  background:#9696e8;
+  background-image: -webkit-linear-gradient(top,#9696e8, #ffffff);
+  background-image: -moz-linear-gradient(top,#9696e8, #ffffff);
+   background-image: linear-gradient(to bottom,#9696e8, #ffffff);
+  color:#000000;
+}
+.submit {
+  background:#006600;
+  background-image: -webkit-linear-gradient(top,#006600,#006600);
+   background-image: -moz-linear-gradient(top,#006600,#006600);
+  -webkit-border-radius: 20;
+  -moz-border-radius: 20;
+  border-radius: 20px;
+  padding: 5px 5px 5px 5px;
+   font-size:15px;
+  color:#ffffff;
+  
+}
+
+.submit:hover{
+  background:#1aff1a;
+  background-image: -webkit-linear-gradient(top,#1aff1a, #ffffff);
+  background-image: -moz-linear-gradient(top,#1aff1a, #ffffff);
+   background-image: linear-gradient(to bottom,#1aff1a, #ffffff);
+  color:#000000;
+}
+.div1
+{
+	color:red;
+	font-size:10px;
+	visibility:hidden;
+	padding-left:25%;
+}
+.div2
+{
+	
+	margin-left: 45%;
+	//background-color:#e6e6e6;
+	//visibility:hidden;
+	word-wrap:break-word;
+	width: 20%;
+	background:-webkit-linear-gradient(top, #8A2BE2, lavender);
+	border-color:white;
+	}
+</style>
+<script src="modernizr-custom.js"></script>
+<script src="modernizr-custom_session.js"></script>
+<script type="text/javascript">
+var set,set_1,set_2,c=0,d=0;
+ /*function clear1()
+ {
+ if(document.getElementById('helper').style.visibility=="visible")
+ {
+ document.getElementById('helper').style.visibility="hidden";
+ }
+ }*/
+function display()
+{
+if(c==0)
+{
+document.getElementById('helper').innerHTML="Password must contain minimun 3 upper case, 2 lower<br>case and 2 special charas";
+document.getElementById('helper').show();
+c=1;
+}
+else
+{
+document.getElementById('helper').close();
+c=0;
+}
+}
+function validate()
+{
+	if(document.getElementById('password').value)
+	{
+
+	var valid1=/[A-Z]/g;
+	var valid2=/[a-z]/g;
+	var valid3=/[#@!$%^&*()+=\-\[\]\';,.\/{}|":<>?~\\\\"]/g;
+	var value=document.getElementById('password').value;
+	var base=parseInt(document.getElementById('progress1').value);
+	console.log(base);
+	var a=1,b=1,c=1;
+	a=value.match(valid1);
+	b=value.match(valid2);
+	c=value.match(valid3);
+	if(a){
+	if(a.length>=3)
+	{
+		if(set!=1)
+		{
+		set=1;
+		base=base+40;
+		document.getElementById('progress1').value=base.toString();
+		}
+	}
+	
+	else
+	{
+		if(set==1) {
+		base=base-40;
+		document.getElementById('progress1').value=base.toString(); set=0;}
+	} 
+	}
+	if(b)
+	{
+	if(b.length>=2)
+	{
+		if(set_1!=1)
+		{
+			set_1=1;
+			base=parseInt(document.getElementById('progress1').value);
+			base=base+40;
+			document.getElementById('progress1').value=base.toString();
+		}
+	}
+	else
+	{
+		if(set_1==1)
+		{
+		base=base-40;
+		document.getElementById('progress1').value=base.toString();set_1=0;
+		}
+	}
+	}
+	if(c)
+	{
+	if(c.length>=2)
+	{
+		if(set_2!=1)
+		{
+			set_2=1;
+			base=parseInt(document.getElementById('progress1').value);
+			base=base+40;
+			document.getElementById('progress1').value=base.toString();
+	    }
+	}
+	else
+	{
+		if(set_2==1)
+		{
+		base=base-40;
+		document.getElementById('progress1').value=base.toString();set_2=0;
+		}
+	}
+	}
+	
+}
+if(document.getElementById('progress1').value!="120")
+	{
+		document.getElementById('div1').style.visibility="visible";
+		document.getElementById('div1').innerHTML="Password does not match minimum criteria.hit help for more information";
+		
+	}
+	else
+	{
+		document.getElementById('div1').style.visibility="hidden";
+	}
+}
+function verify()
+{
+	var val1=document.getElementById('password').value;
+	var val2=document.getElementById('confirm').value;
+	var val3=document.getElementById('dob').value;
+	var val4=document.getElementById('ldob').value;
+	var val5=new Date(val3);
+	var val6=new Date(val4);
+	var d=new Date();
+	console.log(d);
+	console.log(val5);
+	if(+val5 >= +d)
+	{
+		document.getElementById('dob').value="";
+		document.getElementById('dob').style.borderColor="red";
+		//document.getElementById('helper1').innerHTML="Date of birth must not be an older date to today";
+		//document.getElementById('helper1').show();
+		document.getElementById('div2').style.visibility="visible";
+		document.getElementById('div2').innerHTML="Date of birth must not be a  future date";
+		return false;
+		
+	}
+	if(+val6 > +d)
+	{
+		document.getElementById('ldob').value="";
+		//document.getElementById('helper1').innerHTML="Local Date of birth must not be an older date to today";
+		//document.getElementById('helper1').show();
+		document.getElementById('div3').style.visibility="visible";
+		document.getElementById('div3').innerHTML="Local Date of birth must not be a future date";
+		document.getElementById('ldob').style.borderColor="red";
+		return false;
+	}
+	if(val1!=val2)
+	{
+		document.getElementById('confirm').value="";
+		document.getElementById('confirm').style.borderColor="red";
+		//alert("Password and confirm password must be same");
+		document.getElementById('helper1').innerHTML="Password and confirm password must be same";
+		document.getElementById('helper1').show();
+		return false;
+	}
+	if(document.getElementById('progress1').value!="120")
+	{
+		//alert("Please match the minimum criterial for password: 3 upper case, 2 lower case, 2 special characters");
+		document.getElementById('password').value="";
+		//alert("Password and confirm password must be same");
+		document.getElementById('helper1').innerHTML="Please match the minimum criterial for password: 3 upper case, 2 lower case, 2 special characters";
+		document.getElementById('helper1').show();
+		document.getElementById('password').style.borderColor="red";
+		return false;
+	}
+	return true;
+}
+function hider()
+{
+	console.log("called");
+	document.getElementById('div2').style.visibility="hidden";
+	document.getElementById('div3').style.visibility="hidden";
+	document.getElementById('helper1').close();
+	//document.getElementById('helper2').close();
+	document.getElementById('helper').close();
+	//document.getElementById('helper3').close();
+	
+	
+		
+}
+function store()
+{
+	var status=verify();
+	if(!(status))
+		return false;
+		else
+		{
+			if((!(Modernizr.localstorage)) ||(!(Modernizr.sessionstorage)))
+			{	
+				alert("Cannot store values as your browser doesn't support local storage and session storage");
+				return false;
+			}
+			else
+			{
+		sessionStorage.firstname = document.getElementById("firstname").value;
+        sessionStorage.setItem("lastname",document.getElementById("lastname").value);
+        
+        sessionStorage.setItem("email",document.getElementById("email").value);
+        sessionStorage.setItem("password ",document.getElementById("password").value);  
+        
+        sessionStorage.setItem("Date of birth",document.getElementById("dob").value);
+
+        sessionStorage.setItem("DateofBirthTime",document.getElementById("dobt").value);
+		sessionStorage.setItem("Localdateofbirth",document.getElementById("ldob").value);
+
+        sessionStorage.setItem("SSN",document.getElementById("ssn").value);
+
+        sessionStorage.setItem("phone",document.getElementById("phone").value);
+
+        sessionStorage.setItem("creditcard",document.getElementById("credit").value);
+		sessionStorage.setItem("Security Question",document.getElementById("security_1").value);
+		sessionStorage.setItem("answer",document.getElementById("answer").value);
+		
+		
+		localStorage.setItem("firstname",document.getElementById("firstname").value);
+        localStorage.setItem("lastname",document.getElementById("lastname").value);
+        
+        localStorage.setItem("email",document.getElementById("email").value);
+        localStorage.setItem("password ",document.getElementById("password").value);  
+        
+        localStorage.setItem("DateOfBirth",document.getElementById("dob").value);
+
+        localStorage.setItem("DateofBirthTime",document.getElementById("dobt").value);
+		localStorage.setItem("Localdateofbirth",document.getElementById("ldob").value);
+
+        localStorage.setItem("SSN",document.getElementById("ssn").value);
+
+        localStorage.setItem("phone",document.getElementById("phone").value);
+
+        localStorage.setItem("creditcard",document.getElementById("credit").value);
+		localStorage.setItem("Security Question",document.getElementById("security_1").value);
+		localStorage.setItem("answer",document.getElementById("answer").value);
+		alert("Values Successfully stored");
+		return true;
+			}
+		}
+}
+</script>
+</head>
+<body>
+<header id="header1"> Registration Page </header>
+<fieldset>
+<form id="form1" onsubmit="return store();"onclick="hider();">
+<section>
+<label for="firstname" class="section1" >First Name </label>
+<input type="text" name="firstname" size="20" style="width:20%;" id="firstname" pattern="^[A-Za-z ]+$" title="Name should contain only alphabet" value="" required="required" placeholder="Enter first name" />
+</section>
+<br>
+<section>
+<label for="lastname">Last Name </label>
+<input type="text" name="lastname" id="lastname" style="width:20%;" size="20" pattern="^[A-Za-z ]+$" title="Name should contain only alphabet" value="" required="required" placeholder="enter last name" /></section>
+<br>
+<section>
+<label for="email">Email </label>
+<input type="email"  name="email" id="email" style="width:20%;" size="20" value="" required="required" placeholder="enter email" /></section>
+<br>
+<section>
+<label for="password">password</label>
+<input type="password"  name="password" style="width:20%;" id="password" value="" required="required" placeholder="enter password" onkeyup="validate();" onfocus="hider();" />
+<img src="help.jpg" width="17" height="17" onclick="display();"></img>
+<label style="display:none"> progress bar </label>
+<progress  id="progress1" value="0" max="120">
+</progress>
+</section>
+<div id="div1" class="div1"></div>
+<br>
+<section>
+<!--<input tpe="text" id="helper" class="help"></section> -->
+<!--<div id="helper" class="help"></div></section>-->
+<dialog id="helper" class="help"></dialog>
+<dialog id="helper1" class="help"></dialog></section>
+<section>
+<label for="confirm">Confirm Password </label>
+<input type="password" name="confirm" style="width:20%;" size="20" id="confirm" value="" required="required" placeholder="Must be same as  password" onfocus="hider();"/>
+</section>
+<br>
+<section>
+<label for="dob">D.O.B </label>
+<input type="date" name="dob" style="width :20%;" id="dob" value="" required="required" placeholder="mm/dd/yy" onfocus="hider();"/>
+<div id="div2" class="div2"></div>
+</section>
+<br>
+<section>
+<label for="dobt"> D.O.B with time </label>
+<input type="time" name="dobt" style="width:20%;" id="dobt" value="" required="required"/>
+</section>
+<br>
+<section>
+<label for ="ldob"> Local D.O.B </label>
+<!--style="width:16.5%;"-->
+<input type="datetime-local" style="width:20%;" name="ldob" id="ldob" value="" required="required" onfocus="hider();"/>
+<div id="div3" class="div2"></div>
+</section>
+<br>
+<section>
+<label for ="ssn">SSN</label>
+<input type="text" size="20" name="ssn" style="width:20%;" id="ssn" pattern="^[\d]{3}\-[\d]{2}\-[\d]{4}$"  title ="required pattern : ###-##-####" value="" required="required" placeholder="###-##-####"/>
+</section>
+<br>
+<section>
+<label for ="phone">Phone</label>
+<input type="tel" size="20" name="phone" style="width:20%;" id="phone" value="" pattern="^[\d]{3}\s[\d]{3}[-][\d]{4}$" title="Please enter in the format ### ###-####" required="required" placeholder="### ###-####"/>
+</section>
+<br>
+<section>
+<label for="credit">Credit Card No</label>
+<input type="text" size="20" name="credit" id="credit" style="width:20%;" value="" pattern="^[\d]{16}$" title="enter 16 digit valid credit card number" required="required" placeholder="16 digit credit card no"/>
+</section>
+<br>
+<section>
+<label for="security">Security Question</label>
+<input list="security" id="security_1" required="required"  style="width:20%;"placeholder="hit the arrow">
+<datalist id="security">
+  <option value="sum of 2+3=">
+  <option value="sum of 200+300=">
+  <option value="23 * 100=">
+  <option value="Capital of India?">
+  <option value="Captial of USA?">
+</datalist>
+</section>
+<br>
+<section>
+<label for="answer">Answer</label>
+<input type="text" size="20" name="answer" style="width:20%;"id="answer" value=""  placeholder="enter answer for security question" required="required"/>
+</section>
+<br>
+<section>
+<!--<button id="localstorage"class="button1">Check Local Storage</button>
+<button id="sessionstorage" class="button1"> Check Session Storage </button>-->
+</section>
+<br>
+<input type="submit" class="submit" style="width: 35%;text-align:center;" name="submit" value="create" />
+<input type="reset" class="submit" style="width: 35%;text-align:center;" name="reset" value="clear the form" />
+</form>
+</fieldset>
+</body>
+</html>

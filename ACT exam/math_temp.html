@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+body {
+    width:58%;
+    border: 1px solid;
+    border-radius: 5px;
+	margin-left: 10%;
+	margin-top: 10%;
+
+}
+#header1
+{
+	text-align:center;
+	font-weight:bold;
+	background-color:#e6e6e6;
+	padding-top:2px;
+	padding-bottom:3px;
+}
+#section1
+{
+	width: 55%;
+}
+#aside1
+{
+	position: relative;
+	top: -70px;
+	left: -50px;
+	overflow:auto;
+}
+
+
+.btn2
+{
+	
+	margin-left:30;
+}
+#form1{
+	
+	float:left;
+	padding: 50px 20px 20px 20px;
+	}
+.frame2
+{
+	position: relative;
+	margin-top: 20px;
+}
+.submit{
+	border-radius: 10px;
+	padding-top: 5px;
+	padding-bottom:10px;
+	background-color:#ffffff;
+	border: 1px solid;
+	
+}
+
+</style>
+<script type="text/javascript">
+function validate()
+{
+	var radio=document.getElementsByName('option');
+	for(var i=0;i<radio.length;i++)
+	{
+		if(radio[i].checked)
+		{
+			break;
+		}
+	}
+	if(i>=radio.length)
+	{
+		document.getElementById('quant').value=1;
+		document.getElementById('quantanswered').value=0;
+		document.getElementById('quantcorrect').value=0;
+	}
+	else if(document.getElementById('Option4').checked)
+	{
+		document.getElementById('quant').value=1;
+		document.getElementById('quantanswered').value=1;
+		document.getElementById('quantcorrect').value=1;
+	}
+	else
+	{
+		document.getElementById('quant').value=1;
+		document.getElementById('quantanswered').value=1;
+		document.getElementById('quantcorrect').value=0;
+	}
+	
+}
+</script>
+</head>
+<body>
+
+<header id="header1">Question 1</header>
+<section id="section1">
+<p style="padding-left: 20px;">Given Points (x1,y1) and (x2,y2) select the formula to find the equation of the given line.</p>
+</section>
+<br>
+<br>
+<br>
+<section id="section2">
+<form id="form1" action="math2.html">
+    	 <input type="radio" name="option" id="option1" value="wrong" />
+	       <math>
+          <mrow>
+  	
+          <mi>y</mi>
+          <mo>=</mo>
+          <mi>mx</mi>
+          <mo>+</mo>
+    	<mi>b</mi>
+    </mrow>
+</math>
+	<input type="radio" style="margin-left:90px;"  name="option"  id="option2" value="wrong"/>
+<math>
+<mrow>
+<msup>
+
+     <mfenced open="(" close=")" separators="">
+         <mrow>
+         <mi>x</mi>
+         <mo>-</mo>
+         <mi>h</mi>
+         </mrow>
+     </mfenced>
+	 	 
+         <mn>2</mn>
+         
+         </msup>
+         <mo>+</mo>
+         
+     <msup>
+     <mfenced open="(" close=")" separators="">
+         <mrow>
+         <mi>y</mi>
+         <mo>-</mo>
+         <mi>k</mi>
+         </mrow>
+     </mfenced>
+	  <mn>2</mn>
+    </msup>
+       <mo>=</mo>
+       <msup>
+       <mi>r</mi>
+       <mn>2</mn>
+     </msup>
+ 
+      </mrow>
+      </math>
+        <br>
+		<br>
+		
+        <input  type="radio" class="frame2" name="option" id="Option3" id="Option3" value="wrong"/>
+          <math>
+            <mrow>
+              <mi>y</mi>
+              <mo>-</mo>
+              <msub>
+                <mi>y</mi>
+                <mn>1</mn>
+              </msub>
+            </mrow>
+              <mo>=</mo>
+    <mrow>
+        <mi>m</mi>
+        <mfenced open="(" close=")" separators="">
+    <mrow>
+      <mi>x</mi>
+        <mo>-</mo>
+        <msub>
+        <mi>x</mi>
+        <mn>1</mn>
+        </msub>
+        </mrow>
+        </mfenced>
+        </mrow>
+        </math>
+<input type="radio" style="margin-left:30px;" name="option"  id="Option4" value="correct"/>
+
+<math>
+        <mrow>
+        <mrow>
+          <mi>y</mi>
+          <mo>-</mo>
+    <msub>
+        <mi>y</mi>
+        <mn>2</mn>
+    </msub>
+</mrow>
+      <mo>=</mo>
+      <mfrac>
+      <mrow>
+      <msub>
+        <mi>y</mi>
+        <mn>2</mn>
+    </msub>
+    <mo>-</mo>
+    <msub>
+      <mi>y</mi>
+      <mn>1</mn>
+    </msub>
+            </mrow>
+            <mrow>
+                  <msub>
+                  <mi>x</mi>
+                  <mn>2</mn>
+                  </msub>
+                  <mo>-</mo>
+                  <msub>
+                  <mi>x</mi>
+                  <mn>1</mn>
+                  </msub>
+            </mrow>
+            </mfrac>
+            <mfenced open="(" close=")" separators="">
+            <mrow>
+                  <mi>x</mi>
+                  <mo>-</mo>
+                  <msub>
+                  <mi>x</mi>
+                  <mn>2</mn>
+                  </msub>
+            </mrow>
+            </mfenced>
+            </mrow>
+            </math>
+
+<br><br>
+
+<input type="hidden" name="quant" id="quant"/>
+<input type="hidden" name="quantanswered" id="quantanswered"/>
+<input type="hidden" name="quantcorrect" id="quantcorrect"/>
+<input type="submit" class="submit" value="Submit & Next Question" onclick="validate();"/>
+<input type="reset" class="submit" style="margin-left:30px;" value="Cancel & Clear Selection"/> 
+</form>
+
+<aside  id="aside1" style="text-align:right;">
+<img style="text-align:right;" src="graph.jpg"/>
+</aside>
+
+</section>
+
+</body>
+</html>

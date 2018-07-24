@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Mobile </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+.hide{
+visibility:hidden;
+}
+
+  
+  #section1 {color: #fff; background-color: #1E88E5;}
+  #section2 {color: #fff; background-color: #673ab7;}
+  #section3 {color: #fff; background-color: #ff9800;}
+  #section4 {color: #fff; background-color: #00bcd4;}
+  
+  
+ 
+.custom
+{
+	width: 30% !important;
+}
+ /* WebKit and Opera browsers */
+  @-webkit-keyframes spinner {
+    from { -webkit-transform: rotateY(0deg);    }
+    to   { -webkit-transform: rotateY(-360deg); }
+  }
+
+  /* all other browsers */
+  @keyframes spinner {
+    from {
+      -moz-transform: rotateY(0deg);
+      -ms-transform: rotateY(0deg);
+      transform: rotateY(0deg);
+    }
+    to {
+      -moz-transform: rotateY(-360deg);
+      -ms-transform: rotateY(-360deg);
+      transform: rotateY(-360deg);
+    }
+  } 
+   #stage {
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    -ms-perspective: 1200px;
+    perspective: 1200px;
+  }
+   #spinner {
+    -webkit-animation-name: spinner;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 10s;
+
+    animation-name: spinner;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+	border-radius:8px;
+  }
+
+  #spinner:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+#customer{
+	//background-color:	#E6E6FA !important;
+	 background-color: #337ab7;
+	border-radius: 15px !important;
+}
+body {
+      font: 400 15px Lato, sans-serif;
+      line-height: 1.8;
+      color: #818181;
+	  background-color:#e6e6ff;
+  }
+  h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+  }
+  h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 30px;
+  }  
+  h5 {
+      
+     
+      color: #000;
+      font-weight: 400;
+     
+  } 
+  .jumbotron {
+      
+     
+      padding-top:5% !important; 
+	  padding-bottom:2% !important; 
+	  margin-bottom:5% !important; 
+      font-family: Montserrat, sans-serif;
+  }
+.navbar {
+    margin-bottom: 0;
+    background-color: 	#00008B;
+   
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #00008B!important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #E6E6FA !important;
+}
+ .dropdown-menu
+{
+	background-color:   #9999ff   !important;
+}
+
+.carousel-caption h3, p{
+	color:black;
+}
+
+</style>
+<script>
+$(function()
+{
+	$('#sec1').click(function()
+	{
+		document.getElementById('section1').style.visibility='visible';
+		
+		document.getElementById('section2').style.visibility='hidden';
+		
+		document.getElementById('section3').style.visibility='hidden';
+		
+		document.getElementById('section4').style.visibility='hidden';
+
+		
+	});
+	$('#sec2').click(function()
+	{
+		document.getElementById('section2').style.visibility='visible';
+		//document.getElementById('ios').style.visibility='visible';
+		document.getElementById('section1').style.visibility='hidden';
+		//document.getElementById('android').style.visibility='hidden';
+		document.getElementById('section3').style.visibility='hidden';
+		//document.getElementById('windows').style.visibility='hidden';
+		document.getElementById('section4').style.visibility='hidden';
+		//document.getElementById('fire').style.visibility='hidden';
+		
+	});
+	$('#sec3').click(function()
+	{
+		document.getElementById('section3').style.visibility='visible';
+		//document.getElementById('windows').style.visibility='visible';
+		document.getElementById('section1').style.visibility='hidden';
+		//document.getElementById('android').style.visibility='hidden';
+		document.getElementById('section2').style.visibility='hidden';
+		//document.getElementById('ios').style.visibility='hidden';
+		document.getElementById('section4').style.visibility='hidden';
+		//document.getElementById('fire').style.visibility='hidden';
+		
+	});
+	$('#sec4').click(function()
+	{
+		document.getElementById('section4').style.visibility='visible';
+		//document.getElementById('fire').style.visibility='visible';
+		document.getElementById('section1').style.visibility='hidden';
+		//document.getElementById('android').style.visibility='hidden';
+		document.getElementById('section3').style.visibility='hidden';
+		//document.getElementById('windows').style.visibility='hidden';
+		document.getElementById('section2').style.visibility='hidden';
+		//document.getElementById('ios').style.visibility='hidden';
+		
+	});
+});
+</script>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+
+<!-- header -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+	  <div class="navbar-brand" id="stage" style="background:#00008B;">
+		<h3 id="spinner" style="background: #4d4dff; text-align: center; color: #fff; margin:1%;">Co&eacute;quipiers</h3>
+	</div>
+     </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="homepage.html">HOME</a>		
+		</li>
+        <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">PRODUCTS
+		<span class="caret"></span>
+		</a>
+			<ul class="dropdown-menu">
+            <li><a href="Mobile.html">Mobile</a></li>
+            <li><a href="bigdata.html">Big Data</a></li>
+            <li><a href="iot.html">IoE/IoT</a></li> 
+          </ul>
+			
+		</li>
+         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="about.html">OTHER INFO
+		 <span class="caret"></span>
+		 	 </a>
+			 <ul class="dropdown-menu">
+            <li><a href="Code_of_Conduct.html">Code of Conduct</a></li>
+            <li><a href="Business_Process.html">Business Process</a></li>
+          </ul>
+			 </li>
+			
+       </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h2><strong>Mobile Technology</strong></h2> 
+  
+  </div>
+  
+  <div id="bigdata1" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+	 <img class="img-rounded" style="width:100%;" src="mobile.jpg"></img>
+	</div>
+	<div class="col-sm-5">
+      <h4>Mobile technology is the technology used for cellular communication. Mobile code division multiple access (CDMA) technology has evolved rapidly over the past few years. Since the start of this millennium, a standard mobile device has gone from being no more than a simple two-way pager to being a mobile phone, GPS navigation device, an embedded web browser and instant messaging client, and a handheld game console. Many experts argue that the future of computer technology rests in mobile computing with wireless networking. Mobile computing by way of tablet computers are becoming more popular. Tablets are available on the 3G and 4G networks. </h4>
+    </div>
+    <div  id="customer" class="col-sm-4">
+	<h2 class="text-center">What our customers say!!!!</h2>
+  <div id="myCarousel" class="carousel slide text-center " data-ride="carousel">
+   
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner " role="listbox">
+      <div class="item active " >
+        <h4>"Pleasure to be associated with Coqueipiers!"<br><span style="font-style:normal;">Sundar Pichai, CEO, Google</span></h4>
+      </div>
+      <div class="item">
+        <h4>"One word... WOW!!"<br><span style="font-style:normal;">Mark Zuckerberg,CEO, Facebook</span></h4>
+      </div>
+      <div class="item">
+        <h4>"Could I... BE any more happy with this company?"<br><span style="font-style:normal;">Tim cook, CEO, Apple</span></h4>
+      </div>
+    </div>
+	</div>
+  </div>
+  </div>
+  <br>
+  <div class="row">
+   <div class="col-sm-2	">
+   
+     <div class="list-group">
+    <a href="#section1"  id="sec1" class="list-group-item list-group-item-success"><p><strong>Android</strong></p></a>
+    <a href="#section2" id="sec2" class="list-group-item list-group-item-info"><p><strong>iOS</strong></p></a>
+    <a href="#section3" id="sec3"class="list-group-item list-group-item-warning"><p><strong>Windows</strong></p></a>
+	 <a href="#section4"  id="sec4" class="list-group-item list-group-item-danger"><p><strong>Blackberry</strong></p></a>
+  </div>
+    
+	</div>
+	<div class="col-sm-7">
+	  
+       
+        <p id="section1" style="visibility:hidden;">Android is a mobile operating system (OS) currently developed by Google, based on the Linux kernel and designed primarily for touchscreen mobile devices such as smartphones and tablets. </p>
+      
+    
+        
+        <p id="section2" style="visibility:hidden;">iOS (originally iPhone OS) is a mobile operating system created and developed by Apple Inc. and distributed exclusively for Apple hardware. </p>
+          
+            
+        
+        <p id="section3"style="visibility:hidden;">Microsoft Windows (or simply Windows) is a metafamily of graphical operating systems developed, marketed, and sold by Microsoft. </p>
+    
+            
+        <p  id="section4"style="visibility:hidden;">BlackBerry is a line of wireless handheld devices (commonly called smartphones) and services designed and marketed by BlackBerry Limited</p>
+       
+      
+	
+	</div>
+	<div class="col-sm-3"> 
+	<img class="img-circle" src="mobileos.jpg"/>
+	
+	</div>
+  
+</div>
+</div>
+<!--footer-->
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p><img src="footer.jpg" alt="footer logo" width="195" /></p>	
+  <p style="font-size:small;"><strong>&copy; Co&eacute;quipiers Inc. 2016</strong></p>
+</footer>
+</body>
+</html>

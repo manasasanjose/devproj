@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body
+{
+	width:78%;
+	 border: 2px solid;
+}
+h1
+{	
+text-align:center;
+}
+#div1
+{
+	
+	width:94%;
+	background-color:#c94f4f;
+	margin-left:2%;
+}
+#table_div
+{
+	margin-left:5%;
+}
+#piechart
+{
+	float:left;
+	
+}
+#sankey_basic
+{
+	margin-left:40%;
+}
+#para
+{
+	margin-top:15%;
+	float:left;
+}
+
+.submit{
+	
+	margin-top: 5%;
+	//float:left;
+	margin-left:25%;
+	padding-top: 15px;
+	padding-bottom:15px;
+	padding-left:75px;
+	padding-right:75px;
+	background-color:#000000;
+	border: 1px solid;
+	color:#ffffff;
+	margin-bottom:5%;
+	
+}
+</style>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+google.charts.load('current', {'packages':['table','corechart','sankey']});
+var data_rec,table,data1,obj,row,data_san;
+$( document ).ready(function() {
+	console.log("ready");
+	var data;
+    $.ajax({
+	 type: "GET",
+	 url:"http://localhost:8000/request",
+     dataType: 'json',
+    success: function(data) 
+    {  
+  	     
+	//alert("hit");
+	console.log(data);
+	table_1(data);
+	san(data);
+    },
+    error : function()
+    {
+        //$(this).dialog("close");
+    }
+    }); 
+});
+function san(data)
+{
+	data_san=data;
+	google.charts.setOnLoadCallback(drawChart_san);
+}
+function drawChart_san()
+{
+	 var sandata = new google.visualization.DataTable();
+	 var obj_san=JSON.parse(data_san.response);
+	 var arr=[],flag=[];
+	 for(var j=0;j<obj_san.length;j++)
+	 {
+	 arr.push(obj_san[j].toppings.split(","));
+	
+	 }
+	
+        sandata.addColumn('string', 'From');
+        sandata.addColumn('string', 'To');
+        sandata.addColumn('number', 'Weight');
+        sandata.addRows([
+          [ 'small', 'tomato sauce', obj_san.length],
+          [ 'small', 'marinara sauce', obj_san.length],
+          [ 'small', 'bbq sauce', obj_san.length ],
+          [ 'small', 'garlic sauce', obj_san.length ],
+		  [ 'small', 'sweet sauce', obj_san.length ],
+		  [ 'medium', 'tomato sauce', obj_san.length],
+          [ 'medium', 'marinara sauce', obj_san.length],
+          [ 'medium', 'bbq sauce', obj_san.length ],
+          [ 'medium', 'garlic sauce', obj_san.length ],
+		  [ 'medium', 'sweet sauce', obj_san.length ],
+		  [ 'large', 'tomato sauce', obj_san.length],
+          [ 'large', 'marinara sauce', obj_san.length],
+          [ 'large', 'bbq sauce', obj_san.length ],
+          [ 'large', 'garlic sauce', obj_san.length ],
+		  [ 'large', 'sweet sauce', obj_san.length ],
+		   [ 'Extra Large', 'tomato sauce', obj_san.length],
+          [ 'Extra Large', 'marinara sauce', obj_san.length],
+          [ 'Extra Large', 'bbq sauce', obj_san.length ],
+          [ 'Extra Large', 'garlic sauce', obj_san.length ],
+		  [ 'Extra Large', 'sweet sauce', obj_san.length ],
+		  
+		   [ 'tomato sauce', 'onion', obj_san.length],
+           [ 'tomato sauce', 'Mushrooms', obj_san.length],
+			[ 'tomato sauce', 'diced tomatoes', obj_san.length ],
+		   [ 'tomato sauce', 'spinach', obj_san.length],
+           [ 'tomato sauce', 'pineapple', obj_san.length],
+		  [ 'tomato sauce', 'feta cheese', obj_san.length ],
+		   [ 'tomato sauce', 'bacon', obj_san.length],
+		   
+		   [ 'marinara sauce', 'onion', obj_san.length],
+           [ 'marinara sauce', 'Mushrooms', obj_san.length],
+		  [ 'marinara sauce', 'diced tomatoes', obj_san.length ],
+		   [ 'marinara sauce', 'spinach', obj_san.length],
+           [ 'marinara sauce', 'pineapple', obj_san.length],
+		   
+		   [ 'garlic sauce', 'onion', obj_san.length],
+           [ 'garlic sauce', 'Mushrooms', obj_san.length],
+			['garlic sauce', 'diced tomatoes', obj_san.length ],
+		   [ 'garlic sauce', 'spinach', obj_san.length],
+           [ 'garlic sauce', 'pineapple', obj_san.length],
+		   
+		    [ 'bbq sauce', 'pineapple', obj_san.length],
+		  [ 'bbq sauce', 'feta cheese', obj_san.length ],
+		   [ 'bbq sauce', 'bacon', obj_san.length],
+		   
+		     [ 'sweet sauce', 'onion', obj_san.length],
+           [ 'sweet sauce', 'Mushrooms', obj_san.length],
+		  [ 'sweet sauce', 'diced tomatoes', obj_san.length ]
+		   
+		   
+		   
+		   
+           
+		  
+		 
+         
+        ]);
+
+        // Sets chart options.
+        var options = {
+          width: 600,
+        };
+
+        // Instantiates and draws our chart, passing in some options.
+        var chart = new google.visualization.Sankey(document.getElementById('sankey_basic'));
+        chart.draw(sandata, options);
+}
+function table_1(data)
+{
+data_rec=data;
+//google.charts.load('current', {'packages':['table']});
+google.charts.setOnLoadCallback(drawTable);
+	  
+}
+      function drawTable() {
+         data1 = new google.visualization.DataTable();
+        data1.addColumn('number', 'orderid');
+		data1.addColumn('string', 'crust');
+		data1.addColumn('string', 'cheese');
+		 data1.addColumn('string', 'sauces');
+        data1.addColumn('string', 'toppings');
+		console.log(data_rec.response);
+		 obj=JSON.parse(data_rec.response);
+		for(var i=0;i<obj.length;i++)
+		{
+			
+       
+        data1.addRows([
+			[obj[i].orderid,obj[i].crust,obj[i].cheese,obj[i].sauces,obj[i].toppings]
+              ]);
+}
+         table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(data1, {showRowNumber: false, width: '90%', height: '90%'});
+		google.visualization.events.addListener(table, 'select', selectHandler);
+      }
+function selectHandler()
+{
+	 var selection = table.getSelection();
+  var message = '';
+  for (var i = 0; i < selection.length; i++) {
+    var item = selection[i];
+	console.log(item);
+    if (item.row != null && item.column != null) {
+      var str = data1.getFormattedValue(item.row, item.column);
+      message += '{row:' + item.row + ',column:' + item.column + '} = ' + str + '\n';
+    } else if (item.row != null) {
+      var str = data1.getFormattedValue(item.row, 0);
+      message += '{row:' + item.row + ', column:none}; value (col 0) = ' + str + '\n';
+    } else if (item.column != null) {
+      var str = data1.getFormattedValue(0, item.column);
+      message += '{row:none, column:' + item.column + '}; value (row 0) = ' + str + '\n';
+    }
+  }
+  if (message == '') {
+    message = 'nothing';
+  }
+  row=item.row;
+  
+pie();
+}
+function pie()
+{
+
+ //google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart); }
+      function drawChart() {
+		
+		var str=JSON.stringify(obj[row].toppings);
+		str=str.replace(/"/g,'');
+		console.log(str);
+		var arr=str.split(',');
+		var angle=Math.round(360/arr.length);
+		var  item=new Array(arr.length);
+		console.log(angle);
+		/*for(var i=0;i<arr.length;i++)
+		{
+			console.log(arr[i]);
+			item[i][0]=arr[i];
+			console.log(arr[i]);
+			item[i][1]=angle;
+		}*/
+		/*item[0]=[];
+		item[0][0]=arr[0];
+		item[0][1]=5;
+		console.log(item);
+        /*var data = google.visualization.arrayToDataTable([
+          ['toppings', 'amount'],
+          [arr,     angle]
+          
+        ]);*/
+		
+//}*/
+var data=new google.visualization.DataTable();
+data.addColumn('string','toppings');
+data.addColumn('number','angle');
+data.addRows(arr.length);
+for(var i=0;i<arr.length;i++)
+{
+	data.setCell(i,0,arr[i]);
+	data.setCell(i,1,angle);
+}
+//var data = google.visualization.arrayToDataTable(item);
+        var options = {
+          title: 'Your pizza order',
+		  is3D:true
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }	
+
+</script>
+</head>
+<body>
+<h1> Build your own Pizza </h1>
+
+<div id="div1"><h2 style="color:white;">Dashboard</h2></div>
+<div>
+<div id="piechart" style="width: 400px; height: 400px;">Pie chart will be displayed here</div>
+
+<div id="sankey_basic" style="width:300px; height:200px;"></div>
+<h2> Sankey diagram </h2>
+</div>
+<div>
+<p  id="para" style="color:red;"> Select one order below to view the pie chart </p>
+<div id="table_div"></div> </div>
+
+<button class="submit" onClick="location.href='sizeandcrust.html';">Home</button>
+</body>
+</html>

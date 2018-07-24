@@ -1,0 +1,136 @@
+<html>
+<body>
+<form action="math2.html" method="get" id="form1">
+    	 <input type="radio" name="option" id="option1" value="wrong" />
+	       <math>
+          <mrow>
+  	
+          <mi>y</mi>
+          <mo>=</mo>
+          <mi>mx</mi>
+          <mo>+</mo>
+    	<mi>b</mi>
+    </mrow>
+</math>
+	<input type="radio" style="margin-left:90px;"  name="option"  id="option2" value="wrong"/>
+<math>
+<mrow>
+<msup>
+
+     <mfenced open="(" close=")" separators="">
+         <mrow>
+         <mi>x</mi>
+         <mo>-</mo>
+         <mi>h</mi>
+         </mrow>
+     </mfenced>
+	 	 
+         <mn>2</mn>
+         
+         </msup>
+         <mo>+</mo>
+         
+     <msup>
+     <mfenced open="(" close=")" separators="">
+         <mrow>
+         <mi>y</mi>
+         <mo>-</mo>
+         <mi>k</mi>
+         </mrow>
+     </mfenced>
+	  <mn>2</mn>
+    </msup>
+       <mo>=</mo>
+       <msup>
+       <mi>r</mi>
+       <mn>2</mn>
+     </msup>
+ 
+      </mrow>
+      </math>
+        <br>
+		<br>
+		
+        <input  type="radio" class="frame2" name="option" id="Option3" id="Option3" value="wrong"/>
+          <math>
+            <mrow>
+              <mi>y</mi>
+              <mo>-</mo>
+              <msub>
+                <mi>y</mi>
+                <mn>1</mn>
+              </msub>
+            </mrow>
+              <mo>=</mo>
+    <mrow>
+        <mi>m</mi>
+        <mfenced open="(" close=")" separators="">
+    <mrow>
+      <mi>x</mi>
+        <mo>-</mo>
+        <msub>
+        <mi>x</mi>
+        <mn>1</mn>
+        </msub>
+        </mrow>
+        </mfenced>
+        </mrow>
+        </math>
+<input type="radio" style="margin-left:30px;" name="option"  id="Option4" value="correct"/>
+
+<math>
+        <mrow>
+        <mrow>
+          <mi>y</mi>
+          <mo>-</mo>
+    <msub>
+        <mi>y</mi>
+        <mn>2</mn>
+    </msub>
+</mrow>
+      <mo>=</mo>
+      <mfrac>
+      <mrow>
+      <msub>
+        <mi>y</mi>
+        <mn>2</mn>
+    </msub>
+    <mo>-</mo>
+    <msub>
+      <mi>y</mi>
+      <mn>1</mn>
+    </msub>
+            </mrow>
+            <mrow>
+                  <msub>
+                  <mi>x</mi>
+                  <mn>2</mn>
+                  </msub>
+                  <mo>-</mo>
+                  <msub>
+                  <mi>x</mi>
+                  <mn>1</mn>
+                  </msub>
+            </mrow>
+            </mfrac>
+            <mfenced open="(" close=")" separators="">
+            <mrow>
+                  <mi>x</mi>
+                  <mo>-</mo>
+                  <msub>
+                  <mi>x</mi>
+                  <mn>2</mn>
+                  </msub>
+            </mrow>
+            </mfenced>
+            </mrow>
+            </math>
+
+<br><br>
+
+
+<input type="submit" class="submit" value="Submit & Next Question" onclick="validate();" />
+<input type="reset" class="submit" style="margin-left:30px;" value="Cancel & Clear Selection"/> 
+</form>
+</body>
+</html>

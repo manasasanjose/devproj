@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Weather At Current location</title>
+
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/maplabel/src/maplabel.js"></script>
+
+<script>
+	"use strict";
+	var openWeatherMapKey = "b73e62c434a8a68c0b51d025eb0bf841";
+	var gmap;
+	$(document).ready(function() {
+		
+			if(navigator.geolocation) 
+			{
+				document.getElementById('locerror').innerHTML = 'Fetching the weather information...';
+				navigator.geolocation.getCurrentPosition(setlatlong);			// geolocation is supported in the browser find lat nd long
+			}
+			else 
+			{
+				document.getElementById('locerror').innerHTML = 'Your browser doesn\'t support the geolocation api.';
+			}
+		
+		
+		// function to get lat/long and plot on a google map
+		function setlatlong(position) 
+		{
+			var lat		= position.coords.latitude;							// set latitude variable
+			var longi		= position.coords.longitude;						// set longitude variable
+			
+			if(lat != '' && longi != '') 
+			{
+				$.getJSON( "http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+longi+"&units=imperial&APPID=" + openWeatherMapKey, function(data) {	
+					console.log(data);			
+					var mapOptions = {
+                                      zoom: 15,
+                                      center: new google.maps.LatLng(lat,longi)
+                                     };
+                  gmap = new google.maps.Map(document.getElementById('mymap'),mapOptions);	 
+                  var micon = "http://maps.google.com/mapfiles/ms/icons/red.png";
+                   var lL = new google.maps.LatLng(lat,longi);
+                   var tip = "You are here";
+                   var infwin = new google.maps.InfoWindow();
+                   infwin.setContent(
+                                            "<img src=http://openweathermap.org/img/w/"+ data.weather[0].icon  + ".png>"
+                                            + "<br /><strong>" + data.name  + "</strong>"
+                                            + "<br />" + data.main.temp + "&deg;F"
+                                            + "<br /> Wind Speed: " + data.wind.speed +" mph"
+                                            +"<br /> Humidity: "+ data.main.humidity+"%"
+                                            +"<br />" +data.weather[0].description);
+     
+                 var curmarker = new google.maps.Marker({
+                                  position: lL,
+                                   map: gmap,
+                                  animation: google.maps.Animation.DROP,
+                                  title:tip,
+                                  icon: new google.maps.MarkerImage(micon)
+                                  });
+
+                  /*var mapLabel = new MapLabel({
+                                           text: 'Click to know current weather',
+                                           position: lL,
+                                           map: gmap,
+                                           fontSize:15,
+                                           align: 'center'
+                                         });*/
+                  infwin.open(gmap,curmarker);
+                  google.maps.event.addListener(curmarker, 'click', function() {infwin.open(gmap,curmarker);});
+                  document.getElementById("locerror").style.display = 'none';
+				});//function data ends
+			}// if ends 
+			else 
+			{
+				return false;
+			}
+		}// set long ends
+	}); // document.ready ends
+</script>
+</head>
+<body bgcolor="silver">
+			<center><lable id="locerror"></lable></center>
+			<div id="mymap" style="width:100%;height:630px;"> </div>
+</body>
+</html>
+

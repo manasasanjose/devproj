@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+		
+      }
+      #map {
+        height: 90%;
+		width:100%;
+      }
+	   #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select, #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+      #right-panel {
+        font-family: Arial, Helvetica, sans-serif;
+        position: absolute;
+        right: 5px;
+        top: 60%;
+        margin-top: -195px;
+        height: 330px;
+        width: 200px;
+        padding: 5px;
+        z-index: 5;
+        border: 1px solid #999;
+        background: #ececec;
+		visibility:hidden;
+      }
+      h2 {
+        font-size: 22px;
+        margin: 0 0 5px 0;
+      }
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        height: 271px;
+        width: 200px;
+        overflow-y: scroll;
+      }
+      li {
+        background-color: #f1f1f1;
+        padding: 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      li:nth-child(odd) {
+        background-color: #fcfcfc;
+      }
+      #more {
+        width: 100%;
+        margin: 5px 0 0 0;
+		visibility:hidden;
+      }
+    </style>
+	<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script>
+	$(function() {
+	var valule,lat,lng,pyrmont,map,icon,bounds;
+	 var placesList = document.getElementById('places');
+	
+	  if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+    } 
+
+
+function successFunction(position) {
+     lat = position.coords.latitude;
+     lng = position.coords.longitude;
+	 console.log(lat);
+	 console.log(lng);
+	 pyrmont = new google.maps.LatLng(lat, lng);
+	  map = new google.maps.Map(document.getElementById('map'), {
+          center: pyrmont,
+          zoom: 12        });
+		  var userMarker = new google.maps.Marker({
+            position: pyrmont,
+            map: map,
+			title:"you are here",
+			label:'C'
+            
+        });
+		var info=new google.maps.InfoWindow();
+		google.maps.event.addListener(userMarker, 'click', function() {
+			info.setContent("You Are Here");
+			info.open(map, this);
+		});
+    //initMap();
+}
+            
+function errorFunction(error){
+switch(error.code) 
+    {
+    case error.PERMISSION_DENIED:
+      alert("User denied the request for Geolocation.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("Location information is unavailable.");
+      break;
+    case error.TIMEOUT:
+      alert("The request to get user location timed out.");
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("An unknown error occurred.");
+      break;
+    }
+ }
+ 
+ $('#dropit li').on('click', function(){
+    value=$(this).text();
+	 $('#btndrop').text($(this).text());
+	// $('#drop').text($(this).text());
+	 document.getElementById('right-panel').style.visibility="visible";
+	 document.getElementById('more').style.visibility="visible";
+	 
+	 console.log(value);
+ 
+      var infowindow;
+
+		console.log(pyrmont); 
+        infowindow = new google.maps.InfoWindow();
+		switch(value)
+		{
+			case 'Banks':
+			icon="bank.png";
+				var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: pyrmont,
+          radius: 5000,
+          type: ['bank']
+        }, callback);
+		break;
+		case 'Hospitals':
+		icon="hospital.png";
+				var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: pyrmont,
+          radius: 5000,
+          type: ['hospital']
+        }, callback);
+		break;
+		case 'Restaurants':
+		icon="restaurant.png";
+					var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: pyrmont,
+          radius: 5000,
+          type: ['restaurant']
+        }, callback);
+		break;
+		case 'Stores':
+		//alert("hello");
+		icon="shop.PNG";
+				var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: pyrmont,
+          radius: 5000,
+          type: ['store']
+        }, callback);
+		break;
+		}
+
+      function callback(results, status,pagination) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+		bounds = new google.maps.LatLngBounds();
+          for (var i = 0; i < results.length; i++) {
+		   testobject(results[i]);
+          }
+        }
+		 if (pagination.hasNextPage) {
+      var moreButton = document.getElementById('more');
+
+      moreButton.disabled = false;
+
+      moreButton.addEventListener('click', function() {
+        moreButton.disabled = true;
+        pagination.nextPage();
+      });
+    }
+      }
+	  function testobject(placename)
+	  {
+		console.log(placename);
+		var placeLoc = placename.geometry.location;
+		var placeid=placename.place_id;
+		var icon_1 = {
+              url: icon,
+              size: new google.maps.Size(100, 100),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(35, 35)
+            };
+		 service.getDetails({
+          placeId: placeid
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+			console.log("hi"+placename.name);
+			var marker = new google.maps.Marker({
+          map: map,
+		  icon: icon_1,
+		  animation: google.maps.Animation.DROP,
+          position:placeLoc
+        });
+			
+			google.maps.event.addListener(marker, 'click', function() {
+		var str=place.name+"<br>"+place.formatted_address+"<br>";
+		if(typeof(placename.opening_hours)!='undefined')
+		{
+		if(place.opening_hours.open_now)
+		   {
+			str=str+" "+"<p style='color:green'>OPEN NOW!!!</p>"+" ";
+			}
+			else
+			{
+				str=str+" "+"<p style='color:red'>CLOSED NOW</p> "+" ";
+			}
+			if(place.rating){
+			str=str+" "+"Rating: "+place.rating+"<br> "; }
+			else
+			{
+				str=str+" "+"Rating: "+"unavailable"+"<br> "; 
+				
+			}
+		
+			str=str+"Working Hours:"+"<br>";
+			for(var k=0;k<place.opening_hours.weekday_text.length;k++)
+			{
+				str=str+place.opening_hours.weekday_text[k]+"<br>";
+			}
+		}
+			str=str+" "+"Phone Number: "+place.formatted_phone_number+"<br>";
+			str=str+" "+"Website: "+place.website+"<br>";
+				console.log(place);
+          infowindow.setContent("<div style='color:blue';><strong>"+str+"</strong></div>");
+		  infowindow.open(map, this);
+		  
+        });
+          }
+		  else
+		  		  {
+				  
+			//console.log("bye");
+			console.log("bye"+placename.name);
+			 var marker = new google.maps.Marker({
+          map: map,
+		  icon: icon_1,
+		  animation: google.maps.Animation.DROP,
+          position: placename.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+		var str=placename.name+"<br>"+placename.vicinity+"<br>";
+		if(typeof(placename.opening_hours)!='undefined')
+		{
+			if(placename.opening_hours.open_now)
+		   {
+			str=str+" "+"<p style='color:green'>OPEN NOW!!!</p>"+" ";
+			}
+			else
+			{
+				str=str+" "+"<p style='color:red'>CLOSED NOW</p> "+" ";
+			}
+			if(placename.rating){
+			str=str+" "+"Rating: "+placename.rating+" "; }
+			else
+			{
+				str=str+" "+"Rating: "+"unavailable"+" "; 
+				
+			}
+		}
+			
+          infowindow.setContent("<div style='color:blue';><strong>"+str+"</strong></div>");
+		  infowindow.open(map, this);
+		
+		  });
+        }
+		});
+		placesList.innerHTML += '<li>' + placename.name + '</li>';
+
+          bounds.extend(placename.geometry.location);
+		   map.fitBounds(bounds);
+	  }
+
+      function createMarker(place) {
+	  console.log(place);
+        var placeLoc = place.geometry.location;
+		var icon_1 = {
+              url: icon,
+              size: new google.maps.Size(100, 100),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(35, 35)
+            };
+        var marker = new google.maps.Marker({
+          map: map,
+		  icon: icon_1,
+		  animation: google.maps.Animation.DROP,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+		var str=place.name+"<br>"+place.vicinity+"<br>";
+		if(place.opening_hours.open_now)
+		   {
+			str=str+" "+"<p style='color:green'>OPEN NOW!!!</p>"+" ";
+			}
+			else
+			{
+				str=str+" "+"<p style='color:red'>CLOSED NOW</p> "+" ";
+			}
+			if(place.rating){
+			str=str+" "+"Rating: "+place.rating+" "; }
+			else
+			{
+				str=str+" "+"Rating: "+"unavailable"+" "; 
+				
+			}
+			
+          infowindow.setContent("<div style='color:blue';><strong>"+str+"</strong></div>");
+		  infowindow.open(map, this);
+		  
+        });
+		placesList.innerHTML += '<li>' + place.name + '</li>';
+
+          bounds.extend(place.geometry.location);
+		   map.fitBounds(bounds);
+      }
+	  });
+	
+	  });
+    </script>
+  </head>
+  <body>
+                                          
+  <div class="dropdown" id="drop" style="background-color:#A9A9A9;">
+    <button class="btn btn-primary dropdown-toggle" id="btndrop" type="button" data-toggle="dropdown">Select your choice to view the map
+    <span class="caret"></span></button>
+    <ul id="dropit" class="dropdown-menu">
+      <li id="banks"><a href="#">Banks</a></li>
+      <li id="hospitals"><a href="#">Hospitals</a></li>
+      <li id="restaurants"><a href="#">Restaurants</a></li>
+	  <li id="stores"><a href="#">Stores</a></li>
+    </ul>
+  </div>
+  
+
+     <div id="map"> </div> 
+	 <div id="right-panel">
+      <h2>Results</h2>
+      <ul id="places"></ul>
+      <button id="more">More results</button>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCaXKmbpN2dssPkoZC3LoPBs_EqbPXyc-A&libraries=places" async defer></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+ Search Specific Widget:
+This widget is an amalgamation of the Google places API, Google Maps API and Geolocation. Geolocation feature is used to extract the user’s current location, while the google places API is used to retrieve the user choice of an establishment and plot the places accordingly on a map object. Four different options are provided to the user through a drop down menu: restaurants, banks, hospitals and stores. The reason for choosing these options is to provide the analytics of the most commonly searched places in a user friendly way. This widget consists of basic UI controls like: drop down menu, button and unordered list, which have been implemented using twitter bootstrap API for better user experience. In order to use the google places API, we have registered for a unique API key, which will ensure for an unblocking use of the application.
+To start using the google places API, we have included the google maps bootstrap URL to our application with the API key and the places library as additional parameters. The nearby search methodology is used as the search category which returns a list of nearby places based on a user’s location. The nearby search is initiated by invoking the nearbySearch() method of the PlacesServices class, which is a part of the google.maps.places package. The nearbySearch() method takes the request object and the callback method as arguments and returns an array of the PlacesResult class objects. The reason for choosing a nearby-search technique is to ensure high accuracy in the results returned to the user. The request object consists of:
+Location object: which is a google maps ‘latlng’ object that takes the user’s current position’s latitude and longitude as the parameters. The latitude and longitude are derived from the geolocation API. The getCurrentPostion() method is used to yield the accurate coordinates of the current position of the user. If this method is successful it call the successFunction , else the errorFunction() method is called, which is used to highlight the cause of the error. 
+Radius: This field specifies the search radius boundary, within which the results are returned. The maximum search radius is 50,000mts. In our project, we have used a search radius of 5000 m.
+Type: The type of establishment the user wants to visualize. As mentioned above, we have used the banks, hospitals, restaurants and stores categories as types of places.
+The callback function in the nearbySearch is used to handle the return response. The nearbySearch() method returns two responses: array of PlacesResult class objects and a PlacesSerivceStatus object which identifies the success or failure of the call. If the status response is ok, then a marker is displayed on the destined location. In this project, we have used the custom markers which significantly correspond to each establishment. A marker is displayed by creating an object of the google.maps.Marker class. This constructor typically takes four arguments: map object on which the marker should be displayed, the path of the marker image, location co-ordinates on the map where the marker needs to be pinned and finally animation effects.
+Once the marker is pinned, a service call to the getDetails() method is made. This method is a part of the PlacesServices class.  This method takes the placeid as argument and returns comprehensive details about a particular place.  These details are displayed in an information window which is bound to the onClick event of the marker image. The details which are displayed typically include the following parameters:
+•	Place name: The name of the place.
+•	Formatted address: This is a human readable address string, often corresponds to the place’s postal address.
+•	Opening_hours:  This is an object which further contains the following fields:
+•	Open_now: a Boolean variable which indicates whether the place is currently open for public or not.
+•	Weekday_text: This represents an array of strings, which constitute the seven days of a week. Each string is formatted in such a way that it displays the working hours of a place in human readable form.
+•	Rating: This aggregates the user’s reviews and displays the rating on a scale of 0.0 to 5.0.
+•	Formatted phone number: This field displays a user understandable contact number of the place.
+•	Website: The commercial website URL of the place is returned to the user.
+Pagination: By default, google places API returns 20 search results for a query within a given radius. However, a user can extract more results using the concept of pagination. The additional results for a query can be retrieved by accessing the PlaceSearchPagination object via a callback function.  The PlaceSearchPagination object has two main attributes:
+hasNextPage:  a Boolean variable which is set to true if additional results are available. 
+nextPage(): a function that returns the next set of result objects.
+In our project, we have populated the pagination results in an unordered list. If the user wishes to see additional results, apart from the ones displayed, the user must click on the “more results” button.
+The overall flow of the code in this widget is as follows:
+1.	On page load , the following items are displayed:
+Drop-down menu: Contains of four options: Banks, Hospitals, Restaurants, and Stores.
+Google Map: A Google map layout with the user’s current position marked.
+2.	On the click of an option in dropdown menu, the value selected is retrieved into a temporary variable ‘value’. This value is passed to the switch-case block, where the nearbySearch() method is called with the respective type as parameter.
+3.	In the call back function of the nearbySearch() method, the result objects are populated and sent to the testobject() method. Also, the pagination part is handled in this callback.
+4.	In the testobject() method, the custom markers, based on the place type are pinned on the map.
+5.	A Place’s details are retrieved using the getDetails() method by passing the place id as argument.
+6.	These results are formatted and styled for efficient user access and are appended to the infoWindow object. 
+7.	Finally, the infoWindow object is bound to the marker’s onClick event. So, on the click of a marker, the user will be able to view all the related information of that particular place.
+

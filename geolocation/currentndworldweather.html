@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather layer</title>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+var map;
+var geoJSON;
+var request;
+var openWeatherMapKey = "b73e62c434a8a68c0b51d025eb0bf841";
+function initialize() 
+{
+    document.getElementById('locerror').innerHTML = 'Fetching the weather information...'; 
+    var mapOptions = {
+      zoom: 4,
+      center: new google.maps.LatLng(50,-50)
+    };
+    map = new google.maps.Map(document.getElementById('mymap'),
+        mapOptions); 
+    
+    google.maps.event.addListener(map, 'idle', checkIfDataRequested);
+  
+    map.data.addListener('click', function(event) 
+    {
+      infowindow.setContent(
+       "<img src=" + event.feature.getProperty("icon") + ">"
+       + "<br /><strong>" + event.feature.getProperty("city") + "</strong>"
+       + "<br />" + event.feature.getProperty("temperature") + "&deg;C"
+       + "<br />" + event.feature.getProperty("weather")
+       );
+      infowindow.setOptions({
+          position:{
+            lat: event.latLng.lat(),
+            lng: event.latLng.lng()
+          },
+          pixelOffset: {
+            width: 0,
+            height: -15
+          }
+        });
+      infowindow.open(map);
+    });
+    
+    // adding current location 
+    if(navigator.geolocation) 
+    {
+        
+        navigator.geolocation.getCurrentPosition(setlatlong);     // geolocation is supported in the browser find lat nd long
+    }
+    else 
+    {
+        document.getElementById('locerror').innerHTML = 'Your browser doesn\'t support the geolocation api.';
+    }
+    document.getElementById("locerror").style.display = 'none';
+}
+ var checkIfDataRequested = function() 
+ {
+    
+    var bounds = map.getBounds();
+    var NE = bounds.getNorthEast();
+    var SW = bounds.getSouthWest();
+    getWeather(NE.lat(), NE.lng(), SW.lat(), SW.lng());
+}; 
+  
+var getWeather = function(northLat, eastLng, southLat, westLng) 
+{
+    var requestString = "http://api.openweathermap.org/data/2.5/box/city?bbox="
+                        + westLng + "," + northLat + "," //left top
+                        + eastLng + "," + southLat + "," //right bottom
+                        + map.getZoom()
+                        + "&cluster=yes&format=json"
+                        + "&APPID=" + openWeatherMapKey;
+    request = new XMLHttpRequest();
+    request.onload = proccessResults;
+    request.open("get", requestString, true);
+    request.send();
+};
+  // Take the JSON results and proccess them
+var proccessResults = function() 
+{
+    console.log(this);
+    var results = JSON.parse(this.responseText);
+    if (results.list.length > 0) {
+        resetData();
+        for (var i = 0; i < results.list.length; i++) {
+          geoJSON.features.push(jsonToGeoJson(results.list[i]));
+        }
+        drawIcons(geoJSON);
+    }
+};
+var infowindow = new google.maps.InfoWindow();
+  
+var jsonToGeoJson = function (weatherItem) 
+{
+    var feature = {
+      type: "Feature",
+      properties: {
+        city: weatherItem.name,
+        weather: weatherItem.weather[0].main,
+        temperature: weatherItem.main.temp,
+        min: weatherItem.main.temp_min,
+        max: weatherItem.main.temp_max,
+        humidity: weatherItem.main.humidity,
+        pressure: weatherItem.main.pressure,
+        windSpeed: weatherItem.wind.speed,
+        windDegrees: weatherItem.wind.deg,
+        windGust: weatherItem.wind.gust,
+        icon: "http://openweathermap.org/img/w/"
+              + weatherItem.weather[0].icon  + ".png",
+        coordinates: [weatherItem.coord.lon, weatherItem.coord.lat]
+      },
+      geometry: {
+        type: "Point",
+        coordinates: [weatherItem.coord.lon, weatherItem.coord.lat]
+      }
+    };
+    // Set the custom marker icon
+    map.data.setStyle(function(feature) {
+      return {
+        icon: {
+          url: feature.getProperty('icon'),
+          anchor: new google.maps.Point(25, 25)
+        }
+      };
+    });
+    // returns object
+    return feature;
+};
+  // Add the markers to the map
+var drawIcons = function (weather) 
+{
+     map.data.addGeoJson(geoJSON);     
+};
+  // Clear data layer and geoJSON
+var resetData = function () 
+{
+    geoJSON = {
+      type: "FeatureCollection",
+      features: []
+    };
+    map.data.forEach(function(feature) {
+      map.data.remove(feature);
+    });
+};
+
+function setlatlong(position) 
+{
+      var lat   = position.coords.latitude;             // set latitude variable
+      var longi   = position.coords.longitude;            // set longitude variable
+      
+     
+        $.getJSON( "http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+longi+"&units=imperial&APPID="+openWeatherMapKey, function(data) { 
+          console.log(data);       
+          map.setCenter(new google.maps.LatLng(lat,longi));
+                  var micon = "http://maps.google.com/mapfiles/ms/icons/red.png";
+                   var lL = new google.maps.LatLng(lat,longi);
+                   var tip = "You are here";
+                   var ctemp = Math.round((data.main.temp - 32) * 5 / 9);
+                   var ctemp2 = ctemp.toFixed(2);
+                   var infwin = new google.maps.InfoWindow();
+                   infwin.setContent(
+                                            "<img src=http://openweathermap.org/img/w/"+ data.weather[0].icon  + ".png>"
+                                            + "<br /><strong>" + data.name  + "</strong>"
+                                            + "<br />" + ctemp2 + "&deg;C"
+                                            + "<br /> Wind Speed: " + data.wind.speed +" mph"
+                                            +"<br /> Humidity: "+ data.main.humidity+"%"
+                                            +"<br />" +data.weather[0].description);
+     
+                 var curmarker = new google.maps.Marker({
+                                  position: lL,
+                                   map: map,
+                                  animation: google.maps.Animation.DROP,
+                                  title:tip,
+                                  icon: new google.maps.MarkerImage(micon)
+                                  });
+                  infwin.open(map,curmarker);
+                  google.maps.event.addListener(curmarker, 'click', function() {infwin.open(map,curmarker);});
+        });//function data ends
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+</head>
+<body>
+<center><lable id="locerror"></lable></center>
+<div id="mymap" style="width:100%;height:630px;"></div>
+</body>
+</html>
+

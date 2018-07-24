@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Big Data Analytics </title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+function submitdetails()
+{
+  var data = $('#feedback').serialize();
+          $.ajax({
+            url: "download.php",
+            type: "POST",
+            data: data,
+            dataType: 'json',
+            success: function(data) 
+            {
+              var savefile = document.createElement('a');
+                savefile.href = 'http://localhost:8080/280_websiteAssign/whitepaper.PDF';
+                savefile.target = '_blank';
+                savefile.download = 'whitepaper.pdf' || 'unknown';
+
+                var evtdownload = new MouseEvent('click', {
+                    'view': window,
+                    'bubbles': true,
+                    'cancelable': false
+                });
+                savefile.dispatchEvent(evtdownload);
+
+                (window.URL || window.webkitURL).revokeObjectURL(savefile.href);
+            },
+            error : function()
+            {
+              
+            }
+          }); 
+
+}
+</script>
+<style type="text/css">
+.custom
+{
+	width: 30% !important;
+}
+ /* WebKit and Opera browsers */
+  @-webkit-keyframes spinner {
+    from { -webkit-transform: rotateY(0deg);    }
+    to   { -webkit-transform: rotateY(-360deg); }
+  }
+
+  /* all other browsers */
+  @keyframes spinner {
+    from {
+      -moz-transform: rotateY(0deg);
+      -ms-transform: rotateY(0deg);
+      transform: rotateY(0deg);
+    }
+    to {
+      -moz-transform: rotateY(-360deg);
+      -ms-transform: rotateY(-360deg);
+      transform: rotateY(-360deg);
+    }
+  } 
+   #stage {
+    -webkit-perspective: 1200px;
+    -moz-perspective: 1200px;
+    -ms-perspective: 1200px;
+    perspective: 1200px;
+  }
+   #spinner {
+    -webkit-animation-name: spinner;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 10s;
+
+    animation-name: spinner;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: 10s;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+	border-radius:8px;
+  }
+
+  #spinner:hover {
+    -webkit-animation-play-state: paused;
+    animation-play-state: paused;
+  }
+#customer{
+	//background-color:	#E6E6FA !important;
+	 background-color: #337ab7;
+	border-radius: 15px !important;
+}
+body {
+      font: 400 15px Lato, sans-serif;
+      line-height: 1.8;
+      color: #818181;
+	  background-color:#e6e6ff;
+  }
+  h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      color: #303030;
+      font-weight: 600;
+      margin-bottom: 30px;
+  }
+  h4 {
+      font-size: 19px;
+      line-height: 1.375em;
+      color: #303030;
+      font-weight: 400;
+      margin-bottom: 30px;
+  }  
+  .jumbotron {
+      
+     
+      padding-top:5% !important; 
+	  padding-bottom:2% !important; 
+	  margin-bottom:5% !important; 
+      font-family: Montserrat, sans-serif;
+  }
+.navbar {
+    margin-bottom: 0;
+    background-color: 	#00008B;
+   
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #00008B!important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #E6E6FA !important;
+}
+ .dropdown-menu
+{
+	background-color:   #9999ff   !important;
+}
+
+.carousel-caption h3, p{
+	color:black;
+}
+
+</style>
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+
+<!-- header -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+	<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+	  <div class="navbar-brand" id="stage" style="background:#00008B;">
+		<h3 id="spinner" style="background: #4d4dff; text-align: center; color: #fff; margin:1%;">Co&eacute;quipiers</h3>
+	</div>
+     </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="homepage.html">HOME</a>		
+		</li>
+        <li class="dropdown">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">PRODUCTS
+		<span class="caret"></span>
+		</a>
+			<ul class="dropdown-menu">
+            <li><a href="Mobile.html">Mobile</a></li>
+            <li><a href="bigdata.html">Big Data</a></li>
+            <li><a href="iot.html">IoE/IoT</a></li> 
+          </ul>
+			
+		</li>
+         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="about.html">ABOUT US
+		 <span class="caret"></span>
+		 	 </a>
+			 <ul class="dropdown-menu">
+            <li><a href="Mobile.html">Code of Conduct</a></li>
+            <li><a href="bigdata.html">Business Process</a></li>
+          </ul>
+			 </li>
+			
+       </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron text-center">
+  <h2><strong>Big Data</strong></h2> 
+  
+  </div>
+  
+  <div id="bigdata1" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+	 <img src="images.jpg"></img>
+	</div>
+	<div class="col-sm-4">
+      <h4> According to IDC's prediction in 2013, the market for big data will reach $16.1 billion in 2014, growing 6 times faster than the overall IT market. This kind of business analysis reports brings great business opportunities and strong research interests among both academic and industry communities.Recently, our big data offerings are organized focusing on 	Big Data computing,Big Data sciences and Analytics, and Big Data Technology and Engineering.</h4>
+    </div>
+    <div  id="customer" class="col-sm-5">
+	<h2 class="text-center">What our customers say!!!!</h2>
+  <div id="myCarousel" class="carousel slide text-center " data-ride="carousel">
+   
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner " role="listbox">
+      <div class="item active " >
+        <h4>"Pleasure to be associated with Coqueipiers!"<br><span style="font-style:normal;">Sundar Pichai, CEO, Google</span></h4>
+      </div>
+      <div class="item">
+        <h4>"One word... WOW!!"<br><span style="font-style:normal;">Mark Zuckerberg,CEO, Facebook</span></h4>
+      </div>
+      <div class="item">
+        <h4>"Could I... BE any more happy with this company?"<br><span style="font-style:normal;">Tim cook, CEO, Apple</span></h4>
+      </div>
+    </div>
+	</div>
+  </div>
+  </div>
+  <br>
+  <div class="row">
+   <div class="col-sm-4	">
+   <button type="button" class="btn btn-primary btn-lg custom">Brochure</button>
+   <br>
+   <br>
+   <!--download pop up -->
+   <button type="button" class="btn btn-primary btn-lg custom" data-toggle="modal" data-target="#myModal"> White Paper </button>
+
+<!-- pop up -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <!-- <h4 class="modal-title">Download a White Paper</h4> -->
+          <center><button type="button" class="btn btn-primary btn-block"> Download a White Paper </button></center>
+        </div>
+        <div class="modal-body">
+          <form role="form" method="post" name="feedback" id="feedback">
+            <div class="form-group">
+            <input class="form-control" id="fname" name="fname" placeholder="First Name" type="text" required>  <br/>      
+             <input class="form-control" id="lname" name="lname" placeholder="Last Name" type="text" required>  <br/>      
+            <input class="form-control" id="email" name="email" placeholder="Email" type="email" required> 
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <!--<center><a href="iphone_user_guide.pdf" onclick="submitdetails();" download="whitepaper.PDF">click me</a><center>  -->
+          <center><a href="#" class="btn btn-primary btn-lg custom" onclick="submitdetails();">
+          <span class="glyphicon glyphicon-download-alt"></span> Download
+        </a></center>
+        <!--<center><button type="button" class="btn btn-primary btn-lg custom" onclick="submitdetails();">Download</button></center> -->
+        </div>
+      </div>
+      </div>
+</div>
+
+<! -- pop up code ends -->
+
+
+
+
+	</div> <!-- div closing for col -sm 4 -->
+	<div class="col-sm-8">
+	<h2>Animation Goes here</h2>
+	</div>
+  
+</div>
+<!--footer-->
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p><img src="footer.jpg" alt="footer logo" width="195" /></p>	
+  <p style="font-size:small;"><strong>&copy; Co&eacute;quipiers Inc. 2016</strong></p>
+</footer>
+</body>
+</html>

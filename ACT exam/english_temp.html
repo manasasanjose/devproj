@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style type="text/css">
+body {
+    width:70%;
+    border: 2px solid;
+    border-radius: 7px;
+	margin-left: 10%;
+	margin-top: 10%;
+	border-color: #E1E100;
+
+}
+
+#mainsection{
+
+	padding-bottom: 3%;
+}
+#form1
+{
+		padding-top: 20px;
+		padding-left:20px;
+		padding-right:20px;
+		padding-bottom:20px;
+}
+
+#header1{
+
+	text-align:center;
+	font-weight:bold;
+	background-color:#e6e6e6;
+	
+
+}
+.section1{
+  width: 50%; 
+  float: left; 
+  padding-bottom: 60px;
+  padding-left:20px;
+  padding-top:15px;
+}
+#div2
+{
+	
+	padding-top: -90px;
+		padding-left:40px;
+		padding-right:20px;
+		padding-bottom:20px;
+	
+}
+.section2::after { /* not a part of the DOM but can be used for styling */
+  width: 50%; 
+  float: right; 
+ 
+}
+.submit{
+	border-radius: 10px;
+	padding-top: 7px;
+	padding-bottom:10px;
+	background-color:#ffffff;
+	border: 1px solid;
+	margin-top: 40px;
+}
+.radio1
+{
+	visibility:visible;
+}
+</style>
+<script type="text/javascript">
+function clear1()
+{
+	console.log("i ma here");
+	document.getElementById('blank1').innerHTML='$____';
+	document.getElementById('blank2').innerHTML='_____';
+}
+function validate()
+{
+var value1=document.getElementById('blank1').innerHTML;
+var value2=document.getElementById('blank2').innerHTML;
+if(value1=="$____" || value2=="_____")
+{
+	document.getElementById('verbal').value=1;
+	document.getElementById('verbalanswered').value=0;
+	document.getElementById('verbalcorrect').value=0;
+	
+	
+}
+else if(value1=="650" && value2=="twitter")
+{
+	document.getElementById('verbal').value=1;
+	document.getElementById('verbalanswered').value=1;
+	document.getElementById('verbalcorrect').value=1;
+}
+else
+{
+	document.getElementById('verbal').value=1;
+	document.getElementById('verbalanswered').value=1;
+	document.getElementById('verbalcorrect').value=0;
+}
+var string= window.location.search.substring(1);
+    var arrays = string.split('&');
+	var assocarray=new Array();
+	for(var i=0;i<arrays.length;i++)
+	{	
+        var value = arrays[i].split('=');
+		assocarray[value[0]]=value[1];
+	}	
+	var value_1=assocarray['quant'];
+	var value_2=assocarray['quantanswered'];
+	var value_3=assocarray['quantcorrect'];
+	document.getElementById('quant').value=value_1;
+	document.getElementById('quantanswered').value=value_2;
+	document.getElementById('quantcorrect').value=value_3;
+	
+}
+function value1(obj)
+{
+document.getElementById('blank1').innerHTML=document.getElementById(obj.id).value;
+}
+function value2(obj)
+{
+	document.getElementById('blank2').innerHTML=document.getElementById(obj.id).value;
+}
+function show(obj)
+{
+if(obj.id=="blank1")
+{
+	console.log("hit");
+	var radiogroup1=document.getElementsByName('group1');
+	var radiogroup2=document.getElementsByName('group2');
+	for(i=0;i<radiogroup2.length;i++)
+	{
+		radiogroup2[i].style.visibility="hidden";
+	}
+	for(i=0;i<radiogroup1.length;i++)
+	{
+		radiogroup1[i].style.visibility="visible";
+		
+	}
+	document.getElementById('label1').style.visibility="visible";
+	document.getElementById('label2').style.visibility="visible";
+	document.getElementById('label3').style.visibility="visible";
+	document.getElementById('label_1').style.visibility="hidden";
+	document.getElementById('label_2').style.visibility="hidden";
+	document.getElementById('label_3').style.visibility="hidden";
+}
+else if(obj.id=="blank2")
+{
+	var radiogroup1=document.getElementsByName('group1');
+	var radiogroup2=document.getElementsByName('group2');
+	for(i=0;i<radiogroup2.length;i++)
+	{
+		radiogroup2[i].style.visibility="visible";
+	}
+	for(i=0;i<radiogroup1.length;i++)
+	{
+		radiogroup1[i].style.visibility="hidden";
+		
+	}
+	document.getElementById('label1').style.visibility="hidden";
+	document.getElementById('label2').style.visibility="hidden";
+	document.getElementById('label3').style.visibility="hidden";
+	document.getElementById('label_1').style.visibility="visible";
+	document.getElementById('label_2').style.visibility="visible";
+	document.getElementById('label_3').style.visibility="visible";
+}
+}
+</script>
+</head>
+<body>
+<header id="header1">Question 3</header>
+<section>
+<section class="section1" > As per the latest twitter news, complete the article snippet given by<br/> selecting appropriate choices for the blanks.</section>
+<section class = "section2" style="padding-top:30px;"><p style="display:inline;">Twitter wants more cash. The company announced two </p><p id="blank1" style="background-color:yellow;display:inline;" onclick="show(this);">$____</p><p style="display:inline;"> million debt offerings in a filing today, each with a potential $100 increase provided that the sales are oversubscribed.Assuming full tip, including the $100 million boosters </p><p id="blank2" style="background-color:yellow;display:inline;" onclick="show(this);">_____</p><p style="display:inline">  will raise up to $1.5 billion with the two offerings.</p></section>
+<form id="form1" action="videoquestion.html">
+
+ <input type="radio" class="radio1" name="group1" value="650" id="one" onclick="value1(this);"/>
+        <label for="one" class="radio1" id="label1">Option 1 Mark 1: $650</label>
+		 <input type="radio" class="radio1" name="group2" value="twitter" id="one_1" style="margin-left:25px;" onclick="value2(this);"/>
+        <label for="one_1" class="radio1" id="label_1">Option 1 Mark 2: twitter</label>
+		<br>
+		 <input type="radio" class="radio1" name="group1" value="550" id="two" onclick="value1(this);"/>
+        <label for="two" class="radio1" id="label2">Option 2 Mark 1: $550</label>
+		<input type="radio"class="radio1"  name="group2" value="google" id="two_2" style="margin-left:25px;" onclick="value2(this);"/>
+        <label for="two_2" class="radio1" id="label_2">Option 2 Mark 2: Google</label>
+		<br>
+		 <input type="radio" class="radio1" name="group1" value="800" id="three" onclick="value1(this);"/>
+        <label for="three" class="radio1" id="label3">Option 3 Mark 1: $800</label>
+		<input type="radio" class="radio1" name="group2" value="Facebook" id="three_3" style="margin-left:25px;"onclick="value2(this);"/>
+        <label for="three_3" class="radio1" id="label_3">Option 3 Mark 2: Facebook</label>
+		
+ <br>
+ <input type="hidden" name="quant" id="quant"/>
+<input type="hidden" name="quantanswered" id="quantanswered"/>
+<input type="hidden" name="quantcorrect" id="quantcorrect"/>
+<input type="hidden" name="verbal" id="verbal"/>
+<input type="hidden" name="verbalanswered" id="verbalanswered"/>
+<input type="hidden" name="verbalcorrect" id="verbalcorrect"/>
+		<input type="submit" class="submit" value="Submit & Next Question" onclick="validate();"/>
+<input type="reset" class="submit" style="margin-left:30px;" value="Cancel & Clear Selection" onclick="clear1()"/> 
+		
+</form>
+</section>
+</body>
+</html>

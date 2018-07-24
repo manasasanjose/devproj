@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+body {
+    width:60%;
+    border: 1px solid;
+    border-radius: 4px;
+	margin-left: 10%;
+	margin-top: 10%;
+
+}
+#header1
+{
+	text-align:center;
+	font-weight:bold;
+	background-color:#e6e6e6;
+}
+#section1
+{
+	
+	width: 90%;
+}
+
+
+.btn2
+{
+	
+	margin-left:40px;
+}
+.btn3
+{
+	
+	margin-left:60px;
+}
+#form1{
+	
+	float:left;
+	padding: 50px 20px 20px 20px;
+	}
+.frame2
+{
+	padding: 40px 0;
+}
+
+.submit{
+	border-radius: 10px;
+	padding-top: 5px;
+	padding-bottom:10px;
+	background-color:#ffffff;
+	border: 1px solid;
+}
+ 
+</style>
+<script type="text/javascript">
+function validate()
+{
+var string= window.location.search.substring(1);
+    var arrays = string.split('&');
+	var assocarray=new Array();
+	for(var i=0;i<arrays.length;i++)
+	{	
+        var value = arrays[i].split('=');
+		assocarray[value[0]]=value[1];
+	}	
+	var value_1=assocarray['quant'];
+	var value_2=assocarray['quantanswered'];
+	var value_3=assocarray['quantcorrect'];
+	console.log("hi");
+	console.log(value_1);
+var radio=document.getElementsByName('option');
+	for(var i=0;i<radio.length;i++)
+	{
+		if(radio[i].checked)
+		{
+			break;
+		}
+	}
+	if(i>=radio.length)
+	{
+		document.getElementById('quant').value=parseInt(value_1)+1;
+		document.getElementById('quantanswered').value=parseInt(value_2);
+		document.getElementById('quantcorrect').value=parseInt(value_3);
+	}
+	else if(document.getElementById('option1').checked)
+	{
+		document.getElementById('quant').value=parseInt(value_1)+1;
+		document.getElementById('quantanswered').value=parseInt(value_2)+1;
+		document.getElementById('quantcorrect').value=parseInt(value_3)+1;
+	}
+	else
+	{
+		document.getElementById('quant').value=parseInt(value_1)+1;
+		document.getElementById('quantanswered').value=parseInt(value_2)+1;
+		document.getElementById('quantcorrect').value=parseInt(value_3);
+		
+	}	
+	
+		
+        
+ }
+  
+</script>
+</head>
+<body>
+
+<header id="header1">Question 2</header>
+<section id="section1">
+<p style="padding-left: 20px;">Select the cosine theoerm formula</p>
+
+<br>
+
+<form action="english_temp.html">
+    	 <input type="radio" style="margin-left:30px;" name="option" id="option1" value="wrong" />
+		 <label style="padding-left:20px;">
+	       <math>
+          <mrow>
+  	      <mi>cos</mi>
+		  <mfenced open="(" close=")" separators="">
+          <mo>&#945;</mo>
+          <mo>&#177;</mo>
+          <mo>&#946;</mo>
+    	</mfenced>
+		<mo>=</mo>
+    </mrow>
+	<mrow>
+	  	      <mi>cos</mi>
+			  <mo>&#945;</mo>
+			  <mi>cos</mi>
+			  <mo>&#946;</mo>
+			  <mo>&mnplus;</mo>
+			  <mi>sin</mi>
+			  <mo>&#945;</mo>
+			  <mi>sin</mi>
+			  <mo>&#946;</mo>
+			  </mrow>
+			  
+			  
+</math>
+</label>
+	<input type="radio" class="btn2" name="option" id="option2" value="wrong" />
+		 <label style="padding-left:20px;">
+	       <math>
+          <mrow>
+  	      <mi>sin</mi>
+		  <mfenced open="(" close=")" separators="">
+          <mo>&#945;</mo>
+          <mo>&#177;</mo>
+          <mo>&#946;</mo>
+    	</mfenced>
+		<mo>=</mo>
+    </mrow>
+	<mrow>
+	  	      <mi>sin</mi>
+			  <mo>&#945;</mo>
+			  <mi>cos</mi>
+			  <mo>&#946;</mo>
+			  <mo>&#177;</mo>
+			  <mi>cos</mi>
+			  <mo>&#945;</mo>
+			  <mi>sin</mi>
+			  <mo>&#946;</mo>
+			  </mrow>
+			  
+			  
+</math>
+</label>
+<section class="frame2">
+        <input  type="radio"  style="margin-left:30px;" name="option" id="Option3" id="Option3" value="wrong"/>
+		 <label style="padding-left:20px;">
+          <math>
+            <mrow>
+              <mi>sin</mi>
+              <mo>&#945;</mo>
+              <mo>+</mo>
+			  <mi>sin</mi>
+              <mo>&#946;</mo>
+               
+            </mrow>
+              <mo>=</mo>
+    <mrow>
+        <mn>2</mn>
+		<mi>sin</mi>
+		
+        <mfenced open="(" close=")" separators="">
+		<mfrac>
+		<mrow>
+		<mo>&#945;</mo>
+		<mo>+</mo>
+		<mo>&#946;</mo>
+		</mrow>
+		<mrow>
+		<mn>2</mn>
+		</mrow>
+		</mfrac>
+		</mfenced>
+		<mi>cos</mi>
+		 <mfenced open="(" close=")" separators="">
+		<mfrac>
+		<mrow>
+		<mo>&#945;</mo>
+		<mo>-</mo>
+		<mo>&#946;</mo>
+		</mrow>
+		<mrow>
+		<mn>2</mn>
+		</mrow>
+		</mfrac>
+		</mfenced>
+		</mrow>
+		</math>
+		 </label>
+<input type="radio" class="btn3" name="option"  id="Option4" value="correct"/>
+<label style="padding-left:20px;">
+ <math>
+            <mrow>
+              <mi>sin</mi>
+              <mo>&#945;</mo>
+              <mo>-</mo>
+			  <mi>sin</mi>
+              <mo>&#946;</mo>
+               
+            </mrow>
+              <mo>=</mo>
+    <mrow>
+        <mn>2</mn>
+		<mi>cos</mi>
+		
+        <mfenced open="(" close=")" separators="">
+		<mfrac>
+		<mrow>
+		<mo>&#945;</mo>
+		<mo>+</mo>
+		<mo>&#946;</mo>
+		</mrow>
+		<mrow>
+		<mn>2</mn>
+		</mrow>
+		</mfrac>
+		</mfenced>
+		<mi>sin</mi>
+		 <mfenced open="(" close=")" separators="">
+		<mfrac>
+		<mrow>
+		<mo>&#945;</mo>
+		<mo>-</mo>
+		<mo>&#946;</mo>
+		</mrow>
+		<mrow>
+		<mn>2</mn>
+		</mrow>
+		</mfrac>
+		</mfenced>
+		</mrow>
+		</math>
+			</label>
+
+<br><br>
+
+</section>
+<input type="hidden" name="quant" id="quant"/>
+<input type="hidden" name="quantanswered" id="quantanswered"/>
+<input type="hidden" name="quantcorrect" id="quantcorrect"/>
+<input type="submit" class="submit" style="margin-bottom:10px;margin-left:20px;" value="Submit & Next Question" onclick="validate();"/>
+<input type="reset" class="submit" style="margin-left:30px; margin-bottom:10px;" value="Cancel & Clear Selection"/> 
+</form>
+
+</section>
+
+</body>
+</html>

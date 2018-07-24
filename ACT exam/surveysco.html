@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body {
+    width:70%;
+    border: 4px solid;
+   	margin-left: 10%;
+	margin-top: 10%;
+	height:80%;
+}
+
+#mainsection{
+
+	padding-bottom: 3%;
+}
+.btn2
+{
+	
+	margin-left:100px;
+}
+.btn4
+{
+	
+	margin-left:110px;
+}
+
+#form1
+{
+		padding-top: 5px;
+		padding-left:40px;
+		padding-right:20px;
+		padding-bottom:20px;
+}
+
+#header1{
+
+	text-align:center;
+	font-weight:bold;
+	background-color:#e6e6e6;
+	padding-bottom:2px;
+	padding-top:2px;
+	
+
+}
+.section1{
+  width: 55%;
+  
+}
+.btn1
+{
+	margin-top:40px;
+	margin-left:10px;
+}
+#div2
+{
+	
+	padding-top: -90px;
+		padding-left:40px;
+		padding-right:20px;
+		padding-bottom:20px;
+	
+}
+.section2 {
+  width: 50%; 
+ 
+ 
+}
+.btn3
+{
+	margin-top: 40px;
+	margin-left:10px;
+}
+.submit{
+	border-radius: 10px;
+	padding-top:10px;
+	padding-bottom:10px;
+	padding-left:30px;
+	padding-right:30px;
+	background-color:#ffffff;
+	border: 1px solid;
+	
+	text-align:center;
+	
+	
+	
+}
+.second
+{
+	margin-left:40px;
+}
+#aside1
+{
+	margin-top:-320px;
+	margin-right:50px;
+}
+
+.para1
+{
+padding-left: 40px;
+padding-top:10px;
+}
+
+
+</style>
+<script type="text/javascript">
+function validate()
+{
+	
+	var string= window.location.search.substring(1);
+    var arrays = string.split('&');
+	var assocarray=new Array();
+	for(var i=0;i<arrays.length;i++)
+	{	
+        var value = arrays[i].split('=');
+		assocarray[value[0]]=value[1];
+	}	
+	var value_1=assocarray['quant'];
+	var value_2=assocarray['quantanswered'];
+	var value_3=assocarray['quantcorrect'];
+	document.getElementById('quant').value=value_1;
+	document.getElementById('quantanswered').value=value_2;
+	document.getElementById('quantcorrect').value=value_3;
+	value_1=assocarray['verbal'];
+	value_2=assocarray['verbalanswered'];
+	value_3=assocarray['verbalcorrect'];
+	document.getElementById('verbal').value=value_1;
+	document.getElementById('verbalanswered').value=value_2;
+	document.getElementById('verbalcorrect').value=value_3;
+	value_1=assocarray['video'];
+	value_2=assocarray['videoanswered'];
+	value_3=assocarray['videocorrect'];
+	document.getElementById('video').value=value_1;
+	document.getElementById('videoanswered').value=value_2;
+	document.getElementById('videocorrect').value=value_3;
+	
+	
+}
+</script>
+</head>
+<body>
+  <header id="header1" >Survey</header>
+ <p class="para1">How did you like the center?
+  <form id="form1" action="summary.html">
+  <label for="tex1">Comments:</label><br>
+      <textarea rows="4" cols="80" id="text1" style="overflow-y:scroll">
+      </textarea><br>
+	  <label><p>Select Text Area Location:</p></label>
+	  <label for="city"> City:</label>
+	<input list="cities" name="city" id="city">
+  <datalist id="cities">
+  <option value="San Jose">
+           <option value="San Francisco">
+           <option value="Mountain View">
+           <option value="Palo Alto">
+      </datalist>
+	  
+	  <label for="room"class="second"> Room Number#:</label>
+	<input list="rooms" name="room" id="room">
+  <datalist id="rooms">
+  <option value="Room 337">
+           <option value="Room 210">
+           <option value="Room 110">
+           <option value="Room 410">
+      </datalist>
+	  <br>
+	  <br>
+	  <input type="hidden" name="quant" id="quant"/>
+<input type="hidden" name="quantanswered" id="quantanswered"/>
+<input type="hidden" name="quantcorrect" id="quantcorrect"/>
+<input type="hidden" name="verbal" id="verbal"/>
+<input type="hidden" name="verbalanswered" id="verbalanswered"/>
+<input type="hidden" name="verbalcorrect" id="verbalcorrect"/>
+<input type="hidden" name="video" id="video"/>
+<input type="hidden" name="videoanswered" id="videoanswered"/>
+<input type="hidden" name="videocorrect" id="videocorrect"/>
+	  <input type="submit" class="submit" value="Submit & Get Score" onclick="validate();"/>
+<input type="submit" class="submit" style="margin-left:50px;" value="Skip & Get Score" onclick="validate();"/> 
+ </form>
+
+
+</body>
+
+
+
+
+
+</html>
